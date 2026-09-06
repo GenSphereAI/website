@@ -251,20 +251,19 @@
     .hero {
       min-height: 100vh;
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      text-align: left;
+      text-align: center;
       padding: 140px 48px 80px;
       position: relative;
       max-width: 1300px;
       margin: 0 auto;
-      gap: 60px;
+      gap: 48px;
     }
 
     .hero-content {
-      flex: 1;
-      max-width: 620px;
+      max-width: 720px;
     }
 
     .hero-label {
@@ -319,7 +318,7 @@
     .hero-sphere-wrapper {
       position: relative;
       flex-shrink: 0;
-      width: clamp(280px, 35vw, 480px);
+      width: clamp(240px, 28vw, 380px);
       text-decoration: none;
       cursor: pointer;
     }
@@ -414,15 +413,11 @@
 
     @media (max-width: 900px) {
       .hero {
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
         padding: 120px 24px 60px;
-        gap: 48px;
+        gap: 40px;
       }
-      .hero-content { max-width: 100%; }
       .hero-title { font-size: clamp(36px, 10vw, 56px); }
-      .hero-sphere-wrapper { width: 240px; }
+      .hero-sphere-wrapper { width: 220px; }
       .hero-scroll { left: 50%; transform: translateX(-50%); }
     }
 
@@ -784,12 +779,33 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
 
+    .legend-image-wrap {
+      position: relative;
+      width: 100%;
+      margin: 0 auto;
+    }
+
     .legend-image {
       width: 100%;
       max-width: 100%;
       height: auto;
       display: block;
       margin: 0 auto;
+    }
+
+    .legend-image-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 35%;
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.6) 50%,
+        rgba(255,255,255,1) 100%
+      );
+      pointer-events: none;
     }
 
     @media (max-width: 900px) {
@@ -998,7 +1014,10 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
       </div>
-      <img src="assets/legend-bg.png" alt="" class="legend-image reblur delay-3">
+      <div class="legend-image-wrap reblur delay-3">
+        <img src="assets/legend-bg.png" alt="" class="legend-image">
+        <div class="legend-image-fade"></div>
+      </div>
     </div>
   </section>
 
