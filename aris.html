@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>阿里斯实验室 - GenSphere</title>
-  <meta name="description" content="阿里斯实验室是 GenSphere 旗下的前沿研究部门，聚焦于叙事模型、角色与记忆模型、持续世界模型与场景生成模型等基础方向的探索。">
+  <meta name="description" content="阿里斯实验室是 GenSphere 旗下的前沿研究部门，聚焦于叙事模型、角色与记忆模型、持续世界模型与场景生成模型。">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -213,146 +213,84 @@
     .delay-1 { transition-delay: 0.12s; }
     .delay-2 { transition-delay: 0.24s; }
     .delay-3 { transition-delay: 0.36s; }
-    .delay-4 { transition-delay: 0.48s; }
 
     /* ===========================================
-       PAGE HERO (Full screen image)
+       ARIS LABS PAGE
        =========================================== */
-    .page-hero {
-      position: relative;
-      min-height: 85vh;
-      display: flex;
-      align-items: flex-end;
-      padding: 120px 48px 100px;
-      overflow: hidden;
+    .aris-page {
+      padding: 160px 48px 120px;
+      background: #fff;
+      min-height: 100vh;
     }
 
-    .page-hero-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('assets/aris-hero.jpg');
-      background-size: cover;
-      background-position: center;
-      z-index: 0;
-    }
-
-    .page-hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(0,0,0,0.15) 0%,
-        rgba(0,0,0,0.1) 40%,
-        rgba(0,0,0,0.55) 100%
-      );
-      z-index: 1;
-    }
-
-    .page-hero-inner {
-      position: relative;
-      z-index: 2;
-      width: 100%;
+    .aris-inner {
       max-width: 1300px;
       margin: 0 auto;
     }
 
-    .page-hero-label {
-      font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 20px;
+    .aris-header {
+      margin-bottom: 48px;
     }
 
-    .page-hero-title {
+    .aris-title {
       font-family: 'Noto Serif SC', serif;
-      font-size: clamp(48px, 7vw, 88px);
+      font-size: clamp(36px, 5vw, 56px);
       font-weight: 700;
-      line-height: 1.1;
+      line-height: 1.2;
+      color: var(--text);
       letter-spacing: -0.02em;
-      color: #fff;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 30px rgba(0,0,0,0.3);
-    }
-
-    .page-hero-subtitle {
-      font-size: clamp(15px, 1.3vw, 18px);
-      color: rgba(255,255,255,0.85);
-      line-height: 1.9;
-      max-width: 640px;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
-    }
-
-    @media (max-width: 900px) {
-      .page-hero { padding: 140px 24px 60px; min-height: 70vh; }
-      .page-hero-bg { background-position: 65% center; }
-    }
-
-    /* ===========================================
-       RESEARCH GRID
-       =========================================== */
-    .research-section {
-      padding: 120px 48px;
-      max-width: 1300px;
-      margin: 0 auto;
-    }
-
-    .research-header {
-      margin-bottom: 64px;
-    }
-
-    .research-label {
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--text-muted);
       margin-bottom: 16px;
     }
 
-    .research-title {
-      font-family: 'Noto Serif SC', serif;
-      font-size: clamp(32px, 4vw, 48px);
-      font-weight: 600;
-      line-height: 1.2;
-      color: var(--text);
-      letter-spacing: -0.01em;
-      max-width: 700px;
+    .aris-subtitle {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 560px;
     }
 
-    .research-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px;
+    /* Horizontal scroll cards */
+    .aris-cards-wrap {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      margin: 0 -48px;
+      padding: 8px 48px 24px;
     }
 
-    .research-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 20px;
+    .aris-cards-wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+    .aris-cards {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+    }
+
+    .aris-card {
+      flex-shrink: 0;
+      width: 280px;
+      border-radius: 16px;
       overflow: hidden;
-      transition: all 0.4s var(--ease-out);
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.4s var(--ease-out);
     }
 
-    .research-card:hover {
+    .aris-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-      border-color: rgba(45,91,156,0.2);
     }
 
-    .research-card-image {
+    .aris-card-image {
       width: 100%;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 3 / 4;
+      position: relative;
       overflow: hidden;
-      background: #f5f5f5;
     }
 
-    .research-card-image img {
+    .aris-card-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -360,66 +298,73 @@
       transition: transform 0.6s var(--ease-out);
     }
 
-    .research-card:hover .research-card-image img {
-      transform: scale(1.04);
+    .aris-card:hover .aris-card-image img {
+      transform: scale(1.06);
     }
 
-    .research-card-content {
-      padding: 32px;
+    .aris-card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 24px 20px 20px;
+      background: linear-gradient(
+        to top,
+        rgba(255,255,255,0.95) 0%,
+        rgba(255,255,255,0.85) 50%,
+        rgba(255,255,255,0) 100%
+      );
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
-    .research-card-tag {
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-
-    .research-card-title {
+    .aris-card-title {
       font-family: 'Noto Serif SC', serif;
-      font-size: 22px;
+      font-size: 17px;
       font-weight: 600;
       color: var(--text);
       line-height: 1.4;
-      margin-bottom: 16px;
-    }
-
-    .research-card-desc {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.9;
-    }
-
-    .research-card-question {
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      font-size: 14px;
-      color: var(--text);
-      font-weight: 500;
-      font-style: italic;
-    }
-
-    .research-card-question::before {
-      content: '核心问题';
-      display: block;
-      font-family: 'Inter', sans-serif;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      font-style: normal;
       margin-bottom: 6px;
     }
 
+    .aris-card-desc {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .aris-card-question {
+      font-size: 12px;
+      color: var(--text);
+      font-weight: 500;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+
+    /* Scroll hint */
+    .aris-scroll-hint {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .aris-scroll-hint svg {
+      animation: slideHint 1.8s ease-in-out infinite;
+    }
+
+    @keyframes slideHint {
+      0%, 100% { transform: translateX(0); opacity: 0.6; }
+      50% { transform: translateX(6px); opacity: 1; }
+    }
+
     @media (max-width: 900px) {
-      .research-section { padding: 80px 24px; }
-      .research-grid { grid-template-columns: 1fr; gap: 24px; }
-      .research-card-content { padding: 24px; }
+      .aris-page { padding: 120px 24px 80px; }
+      .aris-cards-wrap { margin: 0 -24px; padding: 8px 24px 20px; }
+      .aris-card { width: 240px; }
     }
 
     /* ===========================================
@@ -511,93 +456,71 @@
     <a href="index.html#experience">体验剧情</a>
   </div>
 
-  <!-- Page Hero -->
-  <section class="page-hero">
-    <div class="page-hero-bg"></div>
-    <div class="page-hero-overlay"></div>
-    <div class="page-hero-inner">
-      <div class="page-hero-label reblur">ARIS LABS</div>
-      <h1 class="page-hero-title reblur delay-1">阿里斯实验室</h1>
-      <p class="page-hero-subtitle reveal delay-2">
-        探索构建持续世界的基础模型，让人工智能真正理解叙事、角色、世界与场景。
-      </p>
-    </div>
-  </section>
+  <!-- Aris Labs Content -->
+  <section class="aris-page">
+    <div class="aris-inner">
+      <div class="aris-header">
+        <h1 class="aris-title reblur">阿里斯实验室</h1>
+        <p class="aris-subtitle reveal delay-1">
+          探索构建持续世界的四大基础模型。
+        </p>
+      </div>
 
-  <!-- Research Grid -->
-  <section class="research-section">
-    <div class="research-header">
-      <div class="research-label reveal">RESEARCH AREAS</div>
-      <h2 class="research-title reblur delay-1">四大研究方向</h2>
-    </div>
+      <div class="aris-cards-wrap reveal delay-2">
+        <div class="aris-cards">
+          <!-- Card 1 -->
+          <div class="aris-card">
+            <div class="aris-card-image">
+              <img src="assets/aris-card1.png" alt="叙事模型">
+              <div class="aris-card-overlay">
+                <div class="aris-card-title">叙事模型</div>
+                <div class="aris-card-desc">故事理解、剧情规划、事件生成、因果推进</div>
+                <div class="aris-card-question">故事接下来应该发生什么</div>
+              </div>
+            </div>
+          </div>
 
-    <div class="research-grid">
-      <!-- Narrative Model -->
-      <div class="research-card reveal">
-        <div class="research-card-image">
-          <img src="assets/aris-narrative.png" alt="叙事模型">
-        </div>
-        <div class="research-card-content">
-          <div class="research-card-tag">Narrative Model</div>
-          <h3 class="research-card-title">叙事模型</h3>
-          <p class="research-card-desc">
-            负责故事理解、剧情规划、事件生成、因果推进与长期叙事结构。
-          </p>
-          <div class="research-card-question">
-            故事接下来应该发生什么，以及为什么发生。
+          <!-- Card 2 -->
+          <div class="aris-card">
+            <div class="aris-card-image">
+              <img src="assets/aris-card2.png" alt="角色与记忆模型">
+              <div class="aris-card-overlay">
+                <div class="aris-card-title">角色与记忆模型</div>
+                <div class="aris-card-desc">人格、情绪、关系与长期记忆的形成与更新</div>
+                <div class="aris-card-question">一个角色是谁，经历过什么</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="aris-card">
+            <div class="aris-card-image">
+              <img src="assets/aris-card3.png" alt="持续世界模型">
+              <div class="aris-card-overlay">
+                <div class="aris-card-title">持续世界模型</div>
+                <div class="aris-card-desc">空间、时间、对象、规则与世界状态的长期一致性</div>
+                <div class="aris-card-question">世界是什么样，行动后会变成什么样</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="aris-card">
+            <div class="aris-card-image">
+              <img src="assets/aris-card4.png" alt="场景生成模型">
+              <div class="aris-card-overlay">
+                <div class="aris-card-title">场景生成模型</div>
+                <div class="aris-card-desc">角色、环境、光照、动作与连续画面的生成</div>
+                <div class="aris-card-question">这个世界此刻应该看起来什么样</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Character & Memory Model -->
-      <div class="research-card reveal delay-1">
-        <div class="research-card-image">
-          <img src="assets/aris-character.png" alt="角色与记忆模型">
-        </div>
-        <div class="research-card-content">
-          <div class="research-card-tag">Character &amp; Memory Model</div>
-          <h3 class="research-card-title">角色与记忆模型</h3>
-          <p class="research-card-desc">
-            负责角色人格、目标、情绪、关系以及长期记忆的形成、遗忘、检索和更新。
-          </p>
-          <div class="research-card-question">
-            一个角色是谁，它经历过什么，以及这些经历如何改变它。
-          </div>
-        </div>
-      </div>
-
-      <!-- Persistent World Model -->
-      <div class="research-card reveal delay-2">
-        <div class="research-card-image">
-          <img src="assets/aris-world.png" alt="持续世界模型">
-        </div>
-        <div class="research-card-content">
-          <div class="research-card-tag">Persistent World Model</div>
-          <h3 class="research-card-title">持续世界模型</h3>
-          <p class="research-card-desc">
-            负责空间、时间、对象、地点、物品、规则、事件结果和世界状态的长期一致性，以及行动导致的状态变化。
-          </p>
-          <div class="research-card-question">
-            世界现在是什么样，发生行动以后会变成什么样。
-          </div>
-        </div>
-      </div>
-
-      <!-- Scene Generation Model -->
-      <div class="research-card reveal delay-3">
-        <div class="research-card-image">
-          <img src="assets/aris-scene.png" alt="场景生成模型">
-        </div>
-        <div class="research-card-content">
-          <div class="research-card-tag">Scene Generation Model</div>
-          <h3 class="research-card-title">场景生成模型</h3>
-          <p class="research-card-desc">
-            负责把世界状态转化为可以直接感知的视觉场景，包括角色、环境、光照、空间、动作以及连续画面。
-          </p>
-          <div class="research-card-question">
-            这个世界此刻应该看起来是什么样。
-          </div>
-        </div>
+      <div class="aris-scroll-hint reveal delay-3">
+        <span>左右滑动查看更多</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </div>
     </div>
   </section>
