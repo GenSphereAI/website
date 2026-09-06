@@ -229,7 +229,7 @@
     }
 
     /* ===========================================
-       ABOUT (World Labs style)
+       ABOUT (Video background, World Labs style)
        =========================================== */
     .about-hero {
       min-height: 100vh;
@@ -240,16 +240,30 @@
       overflow: hidden;
     }
 
-    .about-hero-bg {
+    .about-hero-video {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #f5f3ef 0%, #ebe7e0 50%, #e0dbd2 100%);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       z-index: 0;
+    }
+
+    .about-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.2) 0%,
+        rgba(0,0,0,0.1) 40%,
+        rgba(0,0,0,0.5) 100%
+      );
+      z-index: 1;
     }
 
     .about-hero-inner {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
@@ -265,19 +279,21 @@
       font-weight: 700;
       line-height: 1;
       letter-spacing: -0.03em;
-      color: var(--text);
+      color: #fff;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
     }
 
     .about-hero-desc {
       font-size: clamp(15px, 1.3vw, 18px);
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.85);
       line-height: 1.9;
       padding-bottom: 16px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
     }
 
     @media (max-width: 900px) {
       .about-hero-inner { grid-template-columns: 1fr; gap: 32px; }
-      .about-hero { padding: 140px 24px 60px; align-items: center; text-align: center; }
+      .about-hero { padding: 140px 24px 60px; align-items: flex-end; text-align: left; }
       .about-hero-title { font-size: clamp(48px, 12vw, 80px); }
     }
 
@@ -612,9 +628,12 @@
     </div>
   </section>
 
-  <!-- About Hero (Full Screen) -->
+  <!-- About Hero (Full Screen Video) -->
   <section class="about-hero" id="about">
-    <div class="about-hero-bg"></div>
+    <video class="about-hero-video" autoplay muted loop playsinline poster="">
+      <source src="assets/about-bg.mp4" type="video/mp4">
+    </video>
+    <div class="about-hero-overlay"></div>
     <div class="about-hero-inner">
       <div class="about-hero-title reblur">关于我们</div>
       <div class="about-hero-desc reveal delay-1">
