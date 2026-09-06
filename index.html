@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GenSphere</title>
+  <title>维境拟生 GenSphere</title>
   <meta name="description" content="深圳维境拟生科技有限公司（GenSphere-AI）是一家专注于人工智能研究与产品创新的科技公司。">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -599,8 +599,8 @@
   <!-- Navigation -->
   <nav class="nav" id="nav">
     <a href="#" class="nav-logo">
-      <img src="assets/favicon.png" alt="GenSphere">
-      <span>GenSphere</span>
+      <img src="assets/favicon.png" alt="维境拟生 GenSphere">
+      <span>维境拟生 GenSphere</span>
     </a>
     <div class="nav-links">
       <a href="#about" class="nav-link">关于</a>
@@ -630,8 +630,8 @@
 
   <!-- About Hero (Full Screen Video) -->
   <section class="about-hero" id="about">
-    <video class="about-hero-video" autoplay muted loop playsinline poster="">
-      <source src="assets/about-bg.mp4" type="video/mp4">
+    <video class="about-hero-video" autoplay muted loop playsinline webkit-playsinline poster="assets/cta-bg.jpg">
+      <source src="assets/about-bg.mp4" type="video/mp4; codecs=avc1.42E01E">
     </video>
     <div class="about-hero-overlay"></div>
     <div class="about-hero-inner">
@@ -736,7 +736,7 @@
       <div class="footer-inner">
         <div class="footer-logo">
           <img src="assets/favicon.png" alt="">
-          GenSphere
+          维境拟生 GenSphere
         </div>
         <div class="footer-copy">
           © 2024–2026 深圳维境拟生科技有限公司. ALL RIGHTS RESERVED.
@@ -788,6 +788,34 @@
           }
         });
       });
+    })();
+
+    // Video autoplay fallback for mobile
+    (function() {
+      const video = document.querySelector('.about-hero-video');
+      if (!video) return;
+
+      function tryPlay() {
+        const p = video.play();
+        if (p && p.catch) {
+          p.catch(function() {
+            // Autoplay blocked — try again on first user interaction
+          });
+        }
+      }
+
+      tryPlay();
+
+      // Unmute and play on first touch/click (for iOS Safari)
+      const unlock = function() {
+        video.muted = false;
+        video.muted = true; // re-mute, just triggers the play unlock
+        tryPlay();
+        document.removeEventListener('touchstart', unlock);
+        document.removeEventListener('click', unlock);
+      };
+      document.addEventListener('touchstart', unlock, { passive: true });
+      document.addEventListener('click', unlock);
     })();
   </script>
 </body>
