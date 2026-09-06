@@ -618,6 +618,90 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
 
+    /* ===========================================
+       LEGEND (Character illustration background)
+       =========================================== */
+    .legend-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .legend-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('assets/legend-bg.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+
+    .legend-inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 120px 48px;
+    }
+
+    .legend-content {
+      max-width: 520px;
+      text-align: left;
+    }
+
+    .legend-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .legend-title span { color: var(--accent); }
+
+    .legend-desc {
+      font-size: clamp(15px, 1.3vw, 18px);
+      color: var(--text-secondary);
+      line-height: 1.9;
+      margin-bottom: 40px;
+    }
+
+    .legend-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 40px;
+      border-radius: 100px;
+      background: var(--text);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.35s var(--ease-out);
+    }
+
+    .legend-btn:hover {
+      background: #333;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    @media (max-width: 900px) {
+      .legend-section { min-height: auto; }
+      .legend-inner { padding: 80px 24px; }
+      .legend-content { max-width: 100%; }
+      .legend-bg { background-position: center top; background-size: 70%; opacity: 0.4; }
+    }
+
     @media (max-width: 900px) {
       .cta-section { padding: 100px 24px 80px; }
       .cta-globe { max-width: 400px; margin-bottom: 32px; }
@@ -794,21 +878,23 @@
     </div>
   </section>
 
-  <!-- Legend / Story (Character illustration) -->
-  <section class="cta-section" id="legend">
-    <div class="cta-inner cta-inner-full">
-      <img src="assets/legend-bg.png" alt="" class="cta-globe-full reblur">
-      <h2 class="cta-title-big reveal delay-1">
-        一个由你书写的<br>
-        <span>传奇</span>
-      </h2>
-      <p class="cta-subtitle-big reveal delay-2">
-        穿越未知的历险、荒野与遗迹，结识会记住你的角色，建立关系，卷入冲突，发现秘密，你的冒险会成为这个世界真实发生过的历史。
-      </p>
-      <a href="#" class="cta-btn-big reveal delay-3">
-        体验剧情
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
+  <!-- Legend / Story (Character illustration background) -->
+  <section class="legend-section" id="legend">
+    <div class="legend-bg"></div>
+    <div class="legend-inner">
+      <div class="legend-content">
+        <h2 class="legend-title reblur">
+          一个由你书写的<br>
+          <span>传奇</span>
+        </h2>
+        <p class="legend-desc reveal delay-1">
+          穿越未知的历险、荒野与遗迹，结识会记住你的角色，建立关系，卷入冲突，发现秘密，你的冒险会成为这个世界真实发生过的历史。
+        </p>
+        <a href="#" class="legend-btn reveal delay-2">
+          体验剧情
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 
