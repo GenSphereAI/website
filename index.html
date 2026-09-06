@@ -3,137 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GenSphere — AI-native Worlds & RPG</title>
-  <meta name="description" content="深圳维境拟生科技有限公司（GenSphere）是一家专注于人工智能研究与产品创新的科技公司，致力于构建AI-native交互叙事与RPG世界。">
+  <title>GenSphere</title>
+  <meta name="description" content="深圳维境拟生科技有限公司（GenSphere）是一家专注于人工智能研究与产品创新的科技公司。">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* ===========================================
-       ROOT VARIABLES
-       =========================================== */
     :root {
-      --bg-primary: #ffffff;
-      --bg-warm: #fafaf8;
-      --bg-accent: #f5f3ef;
-      --text-primary: #1a1a1a;
-      --text-secondary: #6b6b6b;
-      --text-muted: #9a9a9a;
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-muted: #8a8a8a;
+      --border: rgba(0,0,0,0.08);
       --accent: #c4a882;
-      --accent-light: #e8dcc8;
-      --accent-glow: rgba(196, 168, 130, 0.15);
-      --border: rgba(0,0,0,0.06);
-      --border-light: rgba(0,0,0,0.04);
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-      --shadow-md: 0 4px 24px rgba(0,0,0,0.06);
-      --shadow-lg: 0 12px 48px rgba(0,0,0,0.08);
-      --radius-sm: 6px;
-      --radius-md: 12px;
-      --radius-lg: 20px;
-      --radius-xl: 32px;
-      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-      --duration-normal: 0.7s;
-      --duration-slow: 1.2s;
+      --accent-light: rgba(196,168,130,0.12);
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* ===========================================
-       RESET & BASE
-       =========================================== */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html {
       scroll-behavior: smooth;
-      scroll-snap-type: y proximity;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
     body {
-      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
+      font-family: 'Noto Sans SC', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
       overflow-x: hidden;
-      line-height: 1.75;
     }
 
     ::selection {
       background: var(--accent-light);
-      color: var(--text-primary);
-    }
-
-    /* ===========================================
-       GAUSSIAN BLUR ORBS (Background Effect)
-       =========================================== */
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 0;
-      will-change: transform;
-    }
-
-    .orb-1 {
-      width: 600px;
-      height: 600px;
-      top: -200px;
-      right: -150px;
-      background: radial-gradient(circle, rgba(196,168,130,0.18) 0%, rgba(196,168,130,0) 70%);
-      filter: blur(80px);
-      animation: orbFloat1 20s ease-in-out infinite;
-    }
-
-    .orb-2 {
-      width: 500px;
-      height: 500px;
-      bottom: 10%;
-      left: -200px;
-      background: radial-gradient(circle, rgba(180,160,200,0.12) 0%, rgba(180,160,200,0) 70%);
-      filter: blur(100px);
-      animation: orbFloat2 25s ease-in-out infinite;
-    }
-
-    .orb-3 {
-      width: 400px;
-      height: 400px;
-      top: 50%;
-      right: 5%;
-      background: radial-gradient(circle, rgba(200,180,150,0.1) 0%, rgba(200,180,150,0) 70%);
-      filter: blur(60px);
-      animation: orbFloat3 18s ease-in-out infinite;
-    }
-
-    @keyframes orbFloat1 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(-30px, 40px) scale(1.08); }
-    }
-
-    @keyframes orbFloat2 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(50px, -30px) scale(1.05); }
-      66% { transform: translate(-20px, 40px) scale(0.95); }
-    }
-
-    @keyframes orbFloat3 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(-40px, -20px) scale(1.06); }
-    }
-
-    /* ===========================================
-       SPARK CANVAS (Hero Particle Effect)
-       =========================================== */
-    #spark-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
+      color: var(--text);
     }
 
     /* ===========================================
@@ -141,123 +48,81 @@
        =========================================== */
     .nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
+      top: 0; left: 0; right: 0;
       z-index: 1000;
-      padding: 20px 40px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
       transition: background 0.4s ease, box-shadow 0.4s ease;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
     }
 
     .nav.scrolled {
-      background: rgba(255,255,255,0.85);
-      box-shadow: var(--shadow-sm);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 var(--border);
     }
 
-    .nav-brand {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-      color: var(--text-primary);
-      text-decoration: none;
+    .nav-logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      text-decoration: none;
     }
 
-    .nav-brand-mark {
+    .nav-logo img {
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent) 0%, #a89070 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: white;
-      font-weight: 700;
+      object-fit: cover;
+    }
+
+    .nav-logo span {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: var(--text);
     }
 
     .nav-links {
       display: flex;
-      gap: 36px;
       align-items: center;
+      gap: 40px;
     }
 
     .nav-link {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 500;
       color: var(--text-secondary);
       text-decoration: none;
       transition: color 0.3s ease;
-      position: relative;
     }
 
-    .nav-link:hover {
-      color: var(--text-primary);
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1.5px;
-      background: var(--accent);
-      transition: width 0.3s var(--ease-out-expo);
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
-    }
+    .nav-link:hover { color: var(--text); }
 
     .nav-cta {
-      padding: 10px 22px;
+      padding: 10px 24px;
       border-radius: 100px;
-      background: var(--text-primary);
-      color: white;
-      font-size: 13px;
+      background: var(--text);
+      color: #fff;
+      font-size: 14px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: all 0.3s var(--ease-out);
       border: none;
       cursor: pointer;
     }
 
     .nav-cta:hover {
-      background: var(--accent);
+      background: #333;
       transform: translateY(-1px);
     }
 
     @media (max-width: 768px) {
-      .nav { padding: 16px 20px; }
+      .nav { padding: 16px 24px; }
       .nav-links { display: none; }
-    }
-
-    /* ===========================================
-       SECTIONS BASE
-       =========================================== */
-    section {
-      position: relative;
-      z-index: 2;
-      scroll-snap-align: start;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
-
-    @media (max-width: 768px) {
-      .container { padding: 0 20px; }
     }
 
     /* ===========================================
@@ -265,48 +130,29 @@
        =========================================== */
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity var(--duration-normal) var(--ease-out-expo),
-                  transform var(--duration-normal) var(--ease-out-expo);
+      transform: translateY(36px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
     }
 
-    .reveal.visible {
+    .reblur {
+      opacity: 0;
+      filter: blur(12px);
+      transition: opacity 1.1s var(--ease-out), filter 1.1s var(--ease-out);
+    }
+
+    .reveal.visible, .reblur.visible {
       opacity: 1;
       transform: translateY(0);
-    }
-
-    .reveal-blur {
-      opacity: 0;
-      filter: blur(8px);
-      transition: opacity var(--duration-slow) var(--ease-out-expo),
-                  filter var(--duration-slow) var(--ease-out-expo);
-    }
-
-    .reveal-blur.visible {
-      opacity: 1;
       filter: blur(0);
     }
 
-    .reveal-scale {
-      opacity: 0;
-      transform: scale(0.92);
-      transition: opacity var(--duration-normal) var(--ease-out-expo),
-                  transform var(--duration-normal) var(--ease-out-expo);
-    }
-
-    .reveal-scale.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .stagger-1 { transition-delay: 0.08s; }
-    .stagger-2 { transition-delay: 0.16s; }
-    .stagger-3 { transition-delay: 0.24s; }
-    .stagger-4 { transition-delay: 0.32s; }
-    .stagger-5 { transition-delay: 0.40s; }
+    .delay-1 { transition-delay: 0.12s; }
+    .delay-2 { transition-delay: 0.24s; }
+    .delay-3 { transition-delay: 0.36s; }
+    .delay-4 { transition-delay: 0.48s; }
 
     /* ===========================================
-       HERO SECTION
+       HERO (Full Screen)
        =========================================== */
     .hero {
       min-height: 100vh;
@@ -315,1077 +161,630 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 160px 40px 100px;
+      padding: 140px 48px 80px;
       position: relative;
     }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 18px;
-      border-radius: 100px;
-      background: rgba(196,168,130,0.1);
-      border: 1px solid rgba(196,168,130,0.2);
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--accent);
-      letter-spacing: 0.5px;
-      margin-bottom: 40px;
-    }
-
-    .hero-badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-
-    .hero-title {
-      font-family: 'Noto Serif SC', serif;
-      font-size: clamp(42px, 6vw, 72px);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: var(--text-primary);
-      margin-bottom: 24px;
-      max-width: 900px;
-    }
-
-    .hero-subtitle {
-      font-family: 'Noto Sans SC', sans-serif;
-      font-size: clamp(16px, 2vw, 20px);
-      font-weight: 400;
-      color: var(--text-secondary);
-      max-width: 640px;
-      line-height: 1.8;
-      margin-bottom: 48px;
-    }
-
-    .hero-cta-group {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .hero-cta-primary {
-      padding: 14px 36px;
-      border-radius: 100px;
-      background: var(--text-primary);
-      color: white;
-      font-size: 15px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s var(--ease-out-expo);
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .hero-cta-primary:hover {
-      background: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(196,168,130,0.3);
-    }
-
-    .hero-cta-secondary {
-      padding: 14px 36px;
-      border-radius: 100px;
-      background: transparent;
-      color: var(--text-primary);
-      font-size: 15px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.3s var(--ease-out-expo);
-      border: 1.5px solid var(--border);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .hero-cta-secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      color: var(--text-muted);
-      font-size: 12px;
-      letter-spacing: 1px;
-      animation: bounce 2s ease-in-out infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(8px); }
-    }
-
-    /* ===========================================
-       SECTION HEADER (Reusable)
-       =========================================== */
-    .section-header {
-      text-align: center;
-      margin-bottom: 80px;
-    }
-
-    .section-label {
-      font-family: 'Space Grotesk', sans-serif;
+    .hero-label {
+      font-family: 'Inter', sans-serif;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(40px, 5.5vw, 72px);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      max-width: 900px;
+      margin-bottom: 28px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 1.4vw, 19px);
+      font-weight: 400;
+      color: var(--text-secondary);
+      max-width: 620px;
+      line-height: 1.85;
+      margin-bottom: 48px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 36px;
+      border-radius: 100px;
+      background: var(--text);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.35s var(--ease-out);
+    }
+
+    .hero-cta:hover {
+      background: #333;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--text-muted);
+      animation: bounce 2.4s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* ===========================================
+       ABOUT (World Labs style)
+       =========================================== */
+    .about-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #f5f3ef 0%, #ebe7e0 50%, #e0dbd2 100%);
+      z-index: 0;
+    }
+
+    .about-hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .about-hero-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(64px, 10vw, 140px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .about-hero-desc {
+      font-size: clamp(15px, 1.3vw, 18px);
+      color: var(--text-secondary);
+      line-height: 1.9;
+      padding-bottom: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .about-hero-inner { grid-template-columns: 1fr; gap: 32px; }
+      .about-hero { padding: 140px 24px 60px; align-items: center; text-align: center; }
+      .about-hero-title { font-size: clamp(48px, 12vw, 80px); }
+    }
+
+    /* About content sections */
+    .about-section {
+      padding: 120px 48px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .about-section + .about-section {
+      padding-top: 0;
+    }
+
+    .about-lead {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(24px, 2.8vw, 34px);
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 48px;
+    }
+
+    .about-body {
+      font-size: clamp(15px, 1.3vw, 17px);
+      color: var(--text-secondary);
+      line-height: 2;
+      margin-bottom: 32px;
+    }
+
+    .about-body strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .about-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 80px auto;
+      max-width: 900px;
+    }
+
+    /* ===========================================
+       SECTION HEADER
+       =========================================== */
+    .section-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
       margin-bottom: 16px;
     }
 
     .section-title {
       font-family: 'Noto Serif SC', serif;
-      font-size: clamp(32px, 4vw, 48px);
+      font-size: clamp(28px, 3.5vw, 42px);
       font-weight: 600;
       line-height: 1.2;
-      letter-spacing: -0.02em;
-      color: var(--text-primary);
-      max-width: 700px;
+      color: var(--text);
+    }
+
+    /* ===========================================
+       ARIS LABS
+       =========================================== */
+    .aris-section {
+      padding: 120px 48px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
-    .section-desc {
-      font-size: 17px;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 20px auto 0;
-      line-height: 1.8;
-    }
-
-    /* ===========================================
-       WHAT WE DO SECTION
-       =========================================== */
-    .section-what {
-      padding: 140px 0;
-      background: var(--bg-warm);
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-
-    .card {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: 40px 32px;
-      border: 1px solid var(--border-light);
-      transition: all 0.4s var(--ease-out-expo);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-light));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s var(--ease-out-expo);
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--accent-light);
-    }
-
-    .card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: var(--radius-md);
-      background: var(--bg-accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      margin-bottom: 24px;
-      transition: all 0.3s ease;
-    }
-
-    .card:hover .card-icon {
-      background: var(--accent);
-      color: white;
-    }
-
-    .card-title {
+    .aris-lead {
       font-family: 'Noto Serif SC', serif;
-      font-size: 20px;
+      font-size: clamp(22px, 2.5vw, 30px);
       font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--text-primary);
-    }
-
-    .card-text {
-      font-size: 14.5px;
-      color: var(--text-secondary);
-      line-height: 1.75;
-    }
-
-    /* ===========================================
-       VISION SECTION (Full-width narrative)
-       =========================================== */
-    .section-vision {
-      padding: 160px 0;
-      background: var(--bg-primary);
-      position: relative;
-    }
-
-    .vision-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .vision-paragraph {
-      font-family: 'Noto Serif SC', serif;
-      font-size: clamp(20px, 2.5vw, 26px);
-      font-weight: 400;
-      line-height: 2;
-      color: var(--text-primary);
-      margin-bottom: 36px;
-      text-align: justify;
-    }
-
-    .vision-paragraph strong {
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    .vision-highlight {
-      background: linear-gradient(180deg, transparent 60%, var(--accent-light) 60%);
-      padding: 0 4px;
-      font-weight: 600;
-    }
-
-    /* ===========================================
-       TECH STACK SECTION
-       =========================================== */
-    .section-tech {
-      padding: 140px 0;
-      background: var(--bg-warm);
-    }
-
-    .tech-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    @media (max-width: 900px) {
-      .tech-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 600px) {
-      .tech-grid { grid-template-columns: 1fr; }
-    }
-
-    .tech-item {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      border: 1px solid var(--border-light);
-      transition: all 0.3s var(--ease-out-expo);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .tech-item:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .tech-item::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 80px;
-      height: 80px;
-      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .tech-item:hover::after {
-      opacity: 1;
-    }
-
-    .tech-name {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-    }
-
-    .tech-desc {
-      font-size: 13.5px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    /* ===========================================
-       WHY GAMES SECTION
-       =========================================== */
-    .section-games {
-      padding: 160px 0;
-      background: var(--bg-primary);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .games-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    @media (max-width: 900px) {
-      .games-layout { grid-template-columns: 1fr; gap: 48px; }
-    }
-
-    .games-visual {
-      position: relative;
-      aspect-ratio: 4/3;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      background: var(--bg-accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .games-visual-inner {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .games-visual-text {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 28px;
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: 4px;
-    }
-
-    .games-visual-sub {
-      font-size: 14px;
-      color: var(--text-muted);
-      letter-spacing: 2px;
-    }
-
-    .games-content h2 {
-      font-family: 'Noto Serif SC', serif;
-      font-size: clamp(28px, 3vw, 40px);
-      font-weight: 600;
-      line-height: 1.3;
-      margin-bottom: 28px;
-    }
-
-    .games-content p {
-      font-size: 16px;
-      color: var(--text-secondary);
-      line-height: 1.9;
-      margin-bottom: 20px;
-    }
-
-    .games-quote {
-      margin-top: 36px;
-      padding: 24px 28px;
-      border-left: 3px solid var(--accent);
-      background: var(--bg-warm);
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    }
-
-    .games-quote p {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 18px;
-      font-style: italic;
-      color: var(--text-primary);
-      margin-bottom: 0;
-      line-height: 1.8;
-    }
-
-    /* ===========================================
-       ABOUT / ARIS LABS SECTIONS
-       =========================================== */
-    .section-about {
-      padding: 140px 0;
-      background: var(--bg-warm);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
-      text-align: center;
-    }
-
-    @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; }
-    }
-
-    .about-item {
-      padding: 20px 0;
-    }
-
-    .about-number {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 48px;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 12px;
-    }
-
-    .about-label {
-      font-size: 14px;
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
-
-    .about-text-block {
-      max-width: 720px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .about-text-block p {
-      font-size: 17px;
-      color: var(--text-secondary);
-      line-height: 1.9;
-      margin-bottom: 20px;
-    }
-
-    /* ===========================================
-       JOIN US / CTA SECTION
-       =========================================== */
-    .section-join {
-      padding: 160px 0;
-      background: var(--bg-primary);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .join-content {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .join-content h2 {
-      font-family: 'Noto Serif SC', serif;
-      font-size: clamp(32px, 4vw, 48px);
-      font-weight: 600;
-      line-height: 1.2;
-      margin-bottom: 28px;
-    }
-
-    .join-content p {
-      font-size: 17px;
-      color: var(--text-secondary);
-      line-height: 1.9;
+      line-height: 1.5;
+      color: var(--text);
       margin-bottom: 40px;
+    }
+
+    .aris-body {
+      font-size: clamp(15px, 1.3vw, 17px);
+      color: var(--text-secondary);
+      line-height: 2;
+      margin-bottom: 28px;
+    }
+
+    .aris-highlight {
+      background: linear-gradient(180deg, transparent 55%, var(--accent-light) 55%);
+      padding: 0 3px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ===========================================
+       JOIN US
+       =========================================== */
+    .join-section {
+      padding: 120px 48px 160px;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .join-section .section-header { margin-bottom: 56px; }
+
+    .join-text {
+      font-size: clamp(15px, 1.3vw, 17px);
+      color: var(--text-secondary);
+      line-height: 2;
+      margin-bottom: 48px;
+    }
+
+    .join-highlight {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(18px, 1.8vw, 22px);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 48px;
     }
 
     .join-cta {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 16px 40px;
+      padding: 14px 40px;
       border-radius: 100px;
-      background: var(--text-primary);
-      color: white;
-      font-size: 16px;
+      background: var(--text);
+      color: #fff;
+      font-size: 15px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.3s var(--ease-out-expo);
+      transition: all 0.35s var(--ease-out);
     }
 
     .join-cta:hover {
-      background: var(--accent);
+      background: #333;
       transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(196,168,130,0.25);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
 
     /* ===========================================
-       EXPERIENCE SECTION (Final CTA)
+       CTA / EXPERIENCE (Full screen background)
        =========================================== */
-    .section-experience {
-      padding: 160px 0 120px;
-      background: var(--bg-warm);
+    .cta-section {
       position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+      padding: 120px 48px;
+      overflow: hidden;
     }
 
-    .experience-title {
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background: url('assets/cta-bg.jpg') center/cover no-repeat;
+      z-index: 0;
+    }
+
+    .cta-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.35) 0%,
+        rgba(0,0,0,0.5) 50%,
+        rgba(0,0,0,0.6) 100%
+      );
+      z-index: 1;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+
+    .cta-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 28px;
+    }
+
+    .cta-title {
       font-family: 'Noto Serif SC', serif;
-      font-size: clamp(36px, 5vw, 60px);
+      font-size: clamp(36px, 5vw, 64px);
       font-weight: 700;
       line-height: 1.15;
-      margin-bottom: 32px;
+      color: #fff;
+      margin-bottom: 28px;
       letter-spacing: -0.02em;
     }
 
-    .experience-subtitle {
-      font-size: 18px;
-      color: var(--text-secondary);
+    .cta-title span {
+      color: var(--accent);
+    }
+
+    .cta-subtitle {
+      font-size: clamp(15px, 1.3vw, 18px);
+      color: rgba(255,255,255,0.75);
+      line-height: 1.9;
       max-width: 560px;
       margin: 0 auto 48px;
-      line-height: 1.9;
     }
 
-    .experience-cta {
+    .cta-btn {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 18px 48px;
+      gap: 10px;
+      padding: 16px 44px;
       border-radius: 100px;
-      background: linear-gradient(135deg, var(--accent) 0%, #a89070 100%);
-      color: white;
-      font-size: 17px;
+      background: #fff;
+      color: var(--text);
+      font-size: 16px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.4s var(--ease-out-expo);
-      box-shadow: 0 4px 20px rgba(196,168,130,0.3);
+      transition: all 0.35s var(--ease-out);
     }
 
-    .experience-cta:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 12px 40px rgba(196,168,130,0.35);
+    .cta-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
     }
 
     /* ===========================================
        FOOTER
        =========================================== */
     .footer {
-      padding: 60px 40px 40px;
-      background: var(--bg-primary);
-      border-top: 1px solid var(--border-light);
       position: relative;
       z-index: 2;
+      padding: 40px 48px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      background: transparent;
     }
 
     .footer-inner {
-      max-width: 1200px;
+      max-width: 1300px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 24px;
     }
 
-    .footer-brand {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 18px;
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.7);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
       font-weight: 600;
-      color: var(--text-primary);
+    }
+
+    .footer-logo img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      object-fit: cover;
+      opacity: 0.7;
     }
 
     .footer-copy {
-      font-size: 13px;
-      color: var(--text-muted);
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.5px;
     }
 
     @media (max-width: 768px) {
-      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
     }
 
     /* ===========================================
        REDUCED MOTION
        =========================================== */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+      .reveal, .reblur {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        transition: none;
       }
-      #spark-canvas { display: none; }
-      .orb { display: none; }
     }
   </style>
 </head>
 <body>
-  <!-- Gaussian Blur Background Orbs -->
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-
-  <!-- Spark Particle Canvas -->
-  <canvas id="spark-canvas"></canvas>
 
   <!-- Navigation -->
   <nav class="nav" id="nav">
-    <a href="#" class="nav-brand">
-      <div class="nav-brand-mark">G</div>
-      GenSphere
+    <a href="#" class="nav-logo">
+      <img src="assets/favicon.png" alt="GenSphere">
+      <span>GenSphere</span>
     </a>
     <div class="nav-links">
       <a href="#about" class="nav-link">关于</a>
-      <a href="#tech" class="nav-link">技术</a>
-      <a href="#aris" class="nav-link">研究</a>
-      <a href="#join" class="nav-link">加入</a>
-      <a href="#experience" class="nav-cta">去体验</a>
+      <a href="#aris" class="nav-link">阿里斯实验室</a>
+      <a href="#join" class="nav-link">加入我们吧</a>
+      <a href="#experience" class="nav-cta">体验剧情</a>
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- Hero (Full Screen) -->
   <section class="hero" id="hero">
-    <div class="hero-badge reveal-blur">
-      <span class="hero-badge-dot"></span>
-      AI-native Worlds & RPG
-    </div>
-    <h1 class="hero-title reveal">
+    <div class="hero-label reblur">AI-native Worlds & RPG</div>
+    <h1 class="hero-title reblur delay-1">
       构建能够持续存在<br>并不断演化的世界
     </h1>
-    <p class="hero-subtitle reveal stagger-1">
-      深圳维境拟生科技有限公司（GenSphere）是一家专注于人工智能研究与产品创新的科技公司。
-      我们致力于让世界模型、多模态 AI 与长期记忆架构，成为下一代交互叙事与 RPG 的底层能力。
+    <p class="hero-subtitle reveal delay-2">
+      深圳维境拟生科技有限公司（GenSphere）是一家专注于人工智能研究与产品创新的科技公司，致力于让世界模型、多模态 AI 与长期记忆架构，成为下一代交互叙事与 RPG 的底层能力。
     </p>
-    <div class="hero-cta-group reveal stagger-2">
-      <a href="#experience" class="hero-cta-primary">
-        进入世界
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
-      <a href="#about" class="hero-cta-secondary">
-        了解我们
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m5 12 7-7 7 7"/></svg>
-      </a>
-    </div>
-    <div class="hero-scroll">
+    <a href="#about" class="hero-cta reveal delay-3">
+      了解我们
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m5 12 7 7 7-7"/></svg>
+    </a>
+    <div class="hero-scroll reveal delay-4">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
     </div>
   </section>
 
-  <!-- What We Do -->
-  <section class="section-what" id="about">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">What We Do</div>
-        <h2 class="section-title">我们的方向</h2>
-        <p class="section-desc">研究世界模型、物理模型、视频模型与语言模型，探索统一多模态系统的结合方式</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card reveal stagger-1">
-          <div class="card-icon">🧠</div>
-          <h3 class="card-title">持续理解世界</h3>
-          <p class="card-text">人工智能能否持续理解一个世界、记住其中发生过的事情、保持角色与环境的一致性。</p>
-        </div>
-        <div class="card reveal stagger-2">
-          <div class="card-icon">🎭</div>
-          <h3 class="card-title">角色长期记忆</h3>
-          <p class="card-text">角色拥有长期记忆，事件具有因果连续性，关系能够积累，环境能够变化。</p>
-        </div>
-        <div class="card reveal stagger-3">
-          <div class="card-icon">🌍</div>
-          <h3 class="card-title">玩家影响未来</h3>
-          <p class="card-text">玩家过去的选择能够真正影响未来，故事不再被固定脚本完全限制。</p>
-        </div>
-        <div class="card reveal stagger-4">
-          <div class="card-icon">✨</div>
-          <h3 class="card-title">进入故事本身</h3>
-          <p class="card-text">玩家不是单纯阅读故事，而是进入故事——创建身份、建立关系、参与事件、改变世界。</p>
-        </div>
+  <!-- About Hero (Full Screen) -->
+  <section class="about-hero" id="about">
+    <div class="about-hero-bg"></div>
+    <div class="about-hero-inner">
+      <div class="about-hero-title reblur">关于我们</div>
+      <div class="about-hero-desc reveal delay-1">
+        GenSphere 是一家专注于人工智能研究与产品创新的科技公司。我们重点研究世界模型、物理模型、视频模型与语言模型，并探索这些模型在统一多模态系统中的结合方式。
       </div>
     </div>
   </section>
 
-  <!-- Vision Narrative -->
-  <section class="section-vision">
-    <div class="container">
-      <div class="vision-content">
-        <div class="section-header reveal">
-          <div class="section-label">Vision</div>
-          <h2 class="section-title">我们相信什么</h2>
-        </div>
-        <p class="vision-paragraph reveal">
-          我们相信，下一代 RPG 不应只是把大语言模型接入传统游戏，也不应只是让玩家与角色进行无限对话。真正重要的是建立一个能够<span class="vision-highlight">持续运行的世界</span>：角色拥有长期记忆，事件具有因果连续性，关系能够积累，环境能够变化，玩家过去的选择能够真正影响未来。
-        </p>
-        <p class="vision-paragraph reveal stagger-1">
-          在这样的系统中，玩家不是单纯阅读故事，<strong>而是进入故事。</strong>玩家可以创建新的身份，进入原创世界，与角色建立关系，参与事件，改变环境，并让自己的经历长期留存在世界之中。
-        </p>
-        <p class="vision-paragraph reveal stagger-2">
-          我们的目标并不是简单增加模型调用次数，而是<span class="vision-highlight">让模型在正确的时间处理正确的信息</span>。使一个可以持续数周、数月甚至更长时间的虚拟世界，不需要每一次交互都重新读取全部历史。
-        </p>
-      </div>
-    </div>
+  <!-- About Content -->
+  <section class="about-section">
+    <p class="about-lead reveal">
+      我们关心的不只是模型能否生成内容，而是人工智能是否能够持续理解一个世界、记住其中发生过的事情、保持角色与环境的一致性，并在长期交互中不断推进故事与体验。
+    </p>
   </section>
 
-  <!-- Tech Stack -->
-  <section class="section-tech" id="tech">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">Technology</div>
-        <h2 class="section-title">核心技术体系</h2>
-        <p class="section-desc">围绕 AI-native RPG 目标构建的完整技术栈</p>
-      </div>
-      <div class="tech-grid">
-        <div class="tech-item reveal stagger-1">
-          <div class="tech-name">长期上下文管理</div>
-          <div class="tech-desc">管理跨时间尺度的交互历史，支持超长对话与事件序列</div>
-        </div>
-        <div class="tech-item reveal stagger-2">
-          <div class="tech-name">持久记忆系统</div>
-          <div class="tech-desc">让过去真正成为未来的一部分，支持记忆分类与智能检索</div>
-        </div>
-        <div class="tech-item reveal stagger-3">
-          <div class="tech-name">记忆压缩与分层</div>
-          <div class="tech-desc">在体验质量、上下文规模与推理成本之间取得平衡</div>
-        </div>
-        <div class="tech-item reveal stagger-1">
-          <div class="tech-name">角色状态建模</div>
-          <div class="tech-desc">角色应该知道什么、忘记什么、什么时候重新想起什么</div>
-        </div>
-        <div class="tech-item reveal stagger-2">
-          <div class="tech-name">关系状态管理</div>
-          <div class="tech-desc">关系如何随着事件变化，情感与信任如何积累</div>
-        </div>
-        <div class="tech-item reveal stagger-3">
-          <div class="tech-name">世界状态管理</div>
-          <div class="tech-desc">世界中哪些事实必须永久保存，哪些只属于短暂情境</div>
-        </div>
-        <div class="tech-item reveal stagger-1">
-          <div class="tech-name">事件系统</div>
-          <div class="tech-desc">因果连续性事件链，支持动态叙事推进</div>
-        </div>
-        <div class="tech-item reveal stagger-2">
-          <div class="tech-name">多模态生成</div>
-          <div class="tech-desc">语言、图像、视频与世界模型协同呈现角色与环境</div>
-        </div>
-        <div class="tech-item reveal stagger-3">
-          <div class="tech-name">模型路由与缓存</div>
-          <div class="tech-desc">让正确的模型在正确的时间处理正确的信息</div>
-        </div>
-      </div>
-    </div>
+  <section class="about-section">
+    <p class="about-body reveal">
+      我们的核心方向，是 <strong>AI-native 的交互叙事与 Role Playing Games</strong>。
+    </p>
+    <p class="about-body reveal">
+      我们相信，下一代 RPG 不应只是把大语言模型接入传统游戏，也不应只是让玩家与角色进行无限对话。真正重要的是建立一个能够持续运行的世界：角色拥有长期记忆，事件具有因果连续性，关系能够积累，环境能够变化，玩家过去的选择能够真正影响未来，故事也不再被固定脚本完全限制。
+    </p>
+    <p class="about-body reveal">
+      在这样的系统中，玩家不是单纯阅读故事，<strong>而是进入故事</strong>。玩家可以创建新的身份，进入原创世界，与角色建立关系，参与事件，改变环境，并让自己的经历长期留存在世界之中。
+    </p>
   </section>
 
-  <!-- Why Games First -->
-  <section class="section-games">
-    <div class="container">
-      <div class="games-layout">
-        <div class="games-visual reveal-scale">
-          <div class="games-visual-inner">
-            <div class="games-visual-text">世界即媒介</div>
-            <div class="games-visual-sub">WORLD AS MEDIUM</div>
-          </div>
-        </div>
-        <div class="games-content">
-          <div class="section-header" style="text-align:left; margin-bottom:40px;">
-            <div class="section-label" style="text-align:left;">Why Games</div>
-            <h2 class="section-title" style="margin:0; text-align:left;">为什么选择游戏</h2>
-          </div>
-          <p class="reveal">
-            世界模型的核心问题，是让人工智能能够理解空间、时间、对象、行为、因果关系以及环境变化。这样的能力既可以存在于虚拟世界，也可以进一步连接物理世界。
-          </p>
-          <p class="reveal stagger-1">
-            在 GenSphere，我们正在构建世界模型——这是未来人工智能系统能够感知、生成、推理，并与虚拟世界和物理世界进行交互的重要基础。
-          </p>
-          <div class="games-quote reveal stagger-2">
-            <p>游戏，是我们选择首先把这些能力真正交到用户手中的地方。我们希望创造的不只是新的游戏内容，而是一种新的计算媒介：世界本身成为可以被生成、理解、记忆和改变的对象。</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="about-divider"></div>
+
+  <section class="about-section">
+    <p class="about-body reveal">
+      GenSphere 正在围绕这一目标构建一套完整的 AI-native RPG 技术体系，包括长期上下文管理、持久记忆、记忆分类与检索、角色状态、关系状态、话题管理、世界状态管理、事件系统以及多模态生成。
+    </p>
+    <p class="about-body reveal">
+      语言模型负责理解、推理、角色行为与叙事推进；图像模型、视频模型与世界模型负责呈现人物、空间、动作与环境变化；记忆系统负责让过去真正成为未来的一部分。
+    </p>
+    <p class="about-body reveal">
+      我们的目标并不是简单增加模型调用次数，而是让模型在正确的时间处理正确的信息。长期交互系统真正困难的地方之一，是如何在体验质量、上下文规模与推理成本之间取得平衡。因此，我们也持续研究记忆压缩、分层记忆、动态上下文选择、状态结构化、缓存与模型路由等技术，使一个可以持续数周、数月甚至更长时间的虚拟世界，不需要每一次交互都重新读取全部历史。
+    </p>
   </section>
 
-  <!-- About -->
-  <section class="section-about">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">About</div>
-        <h2 class="section-title">关于 GenSphere</h2>
-      </div>
-      <div class="about-grid reveal">
-        <div class="about-item">
-          <div class="about-number">2024</div>
-          <div class="about-label">成立于</div>
-        </div>
-        <div class="about-item">
-          <div class="about-number">深圳</div>
-          <div class="about-label">总部</div>
-        </div>
-        <div class="about-item">
-          <div class="about-number">ByteDance</div>
-          <div class="about-label">团队背景</div>
-        </div>
-      </div>
-      <div class="about-text-block reveal stagger-1" style="margin-top:60px;">
-        <p>深圳维境拟生科技有限公司（GenSphere）专注于人工智能、世界模型、多模态生成与 AI-native 交互叙事技术研究，并围绕下一代 Role Playing Games 构建长期产品与技术体系。</p>
-        <p>我们希望由此推动 RPG 从预先编写的内容，逐渐走向能够持续生成、持续记忆、持续演化的世界。</p>
-      </div>
-    </div>
+  <div class="about-divider"></div>
+
+  <section class="about-section">
+    <p class="about-body reveal">
+      这意味着我们追求的不是"更长的聊天记录"，而是更接近人类记忆与真实世界运行方式的长期状态系统。
+    </p>
+    <p class="about-body reveal">
+      一个角色应该知道什么、忘记什么、什么时候重新想起什么；一段关系应该如何随着事件变化；一个世界中哪些事实必须永久保存，哪些只属于短暂情境；哪些内容需要语言模型推理，哪些应该直接从结构化状态中读取——这些问题共同决定了 AI 角色和 AI 世界能否真正成立。
+    </p>
+    <p class="about-body reveal">
+      我们希望由此推动 RPG 从预先编写的内容，逐渐走向能够持续生成、持续记忆、持续演化的世界。
+    </p>
+  </section>
+
+  <div class="about-divider"></div>
+
+  <section class="about-section">
+    <p class="about-body reveal">
+      GenSphere 的长期研究也不局限于游戏。世界模型的核心问题，是让人工智能能够理解空间、时间、对象、行为、因果关系以及环境变化。这样的能力既可以存在于虚拟世界，也可以进一步连接物理世界。
+    </p>
+    <p class="about-body reveal">
+      在 GenSphere，我们正在构建世界模型——这是未来人工智能系统能够感知、生成、推理，并与虚拟世界和物理世界进行交互的重要基础。而游戏，是我们选择首先把这些能力真正交到用户手中的地方。我们希望创造的不只是新的游戏内容，而是一种新的计算媒介：世界本身成为可以被生成、理解、记忆和改变的对象。
+    </p>
   </section>
 
   <!-- Aris Labs -->
-  <section class="section-about" id="aris" style="background: var(--bg-primary);">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-label">Research</div>
-        <h2 class="section-title">阿里斯实验室</h2>
-        <p class="section-desc">Aris Labs — GenSphere 面向前沿人工智能方向的研究与实验平台</p>
-      </div>
-      <div class="vision-content" style="margin-top: 60px;">
-        <p class="vision-paragraph reveal">
-          阿里斯实验室（Aris Labs）是 GenSphere 面向前沿人工智能方向的研究与实验平台。
-        </p>
-        <p class="vision-paragraph reveal stagger-1">
-          我们探索<span class="vision-highlight">世界模型、物理模型、视频生成、语言模型、多模态智能、长期记忆、角色智能、交互叙事以及生成式世界</span>等方向，并将其中具有产品价值的研究逐步转化为真实可用的系统。
-        </p>
-      </div>
+  <section class="aris-section" id="aris">
+    <div class="section-header reveal">
+      <div class="section-label">Research</div>
+      <h2 class="section-title">阿里斯实验室</h2>
     </div>
+    <p class="aris-lead reveal">
+      阿里斯实验室（Aris Labs）是 GenSphere 面向前沿人工智能方向的研究与实验平台。
+    </p>
+    <p class="aris-body reveal">
+      我们探索<span class="aris-highlight">世界模型、物理模型、视频生成、语言模型、多模态智能、长期记忆、角色智能、交互叙事以及生成式世界</span>等方向，并将其中具有产品价值的研究逐步转化为真实可用的系统。
+    </p>
+    <p class="aris-body reveal">
+      我们相信，前沿研究只有在与真实产品需求结合时，才能产生最大的价值。阿里斯实验室的定位，是连接学术研究与工程实践的桥梁——既保持对最新技术进展的敏感，也始终关注这些技术能否在用户手中真正发挥作用。
+    </p>
   </section>
 
   <!-- Join Us -->
-  <section class="section-join" id="join">
-    <div class="container">
-      <div class="join-content">
-        <div class="section-header reveal">
-          <div class="section-label">Join Us</div>
-          <h2 class="section-title">加入我们</h2>
-        </div>
-        <p class="reveal">
-          加入 GenSphere，与研究人员、工程师、游戏开发者、产品开发者、设计师与商业人才一起，推进人工智能、世界模型与下一代交互娱乐的发展。
-        </p>
-        <p class="reveal stagger-1" style="font-family: 'Noto Serif SC', serif; font-size: 20px; color: var(--text-primary); margin-top: 28px;">
-          我们寻找真正愿意研究困难问题，并愿意把研究最终变成产品的人。
-        </p>
-        <a href="#" class="join-cta reveal stagger-2" style="margin-top: 48px;">
-          联系我们
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
-      </div>
+  <section class="join-section" id="join">
+    <div class="section-header reveal">
+      <div class="section-label">Careers</div>
+      <h2 class="section-title">加入我们吧</h2>
     </div>
+    <p class="join-text reveal">
+      加入 GenSphere，与研究人员、工程师、游戏开发者、产品开发者、设计师与商业人才一起，推进人工智能、世界模型与下一代交互娱乐的发展。
+    </p>
+    <p class="join-highlight reveal">
+      我们寻找真正愿意研究困难问题，并愿意把研究最终变成产品的人。
+    </p>
+    <a href="mailto:" class="join-cta reveal">
+      联系我们
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
   </section>
 
-  <!-- Experience (Final CTA) -->
-  <section class="section-experience" id="experience">
-    <div class="container">
-      <h2 class="experience-title reveal">
+  <!-- Experience / CTA (Full screen background) -->
+  <section class="cta-section" id="experience">
+    <div class="cta-bg"></div>
+    <div class="cta-overlay"></div>
+    <div class="cta-content">
+      <div class="cta-label reblur">Enter the World</div>
+      <h2 class="cta-title reblur delay-1">
         不是观看一个故事<br>
-        <span style="color: var(--accent);">进入它</span>
+        <span>进入它</span>
       </h2>
-      <p class="experience-subtitle reveal stagger-1">
+      <p class="cta-subtitle reveal delay-2">
         进入 GenSphere 的原创世界。创建新的身份，认识角色，建立关系，参与故事，并让你的选择真正成为这个世界历史的一部分。
       </p>
-      <a href="#" class="experience-cta reveal stagger-2">
-        去体验
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      <a href="#" class="cta-btn reveal delay-3">
+        体验剧情
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
     </div>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <img src="assets/favicon.png" alt="">
+          GenSphere
+        </div>
+        <div class="footer-copy">
+          © 2024–2026 深圳维境拟生科技有限公司. ALL RIGHTS RESERVED.
+        </div>
+      </div>
+    </footer>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">GenSphere</div>
-      <div class="footer-copy">
-        © 2024–2026 深圳维境拟生科技有限公司 · All rights reserved
-      </div>
-    </div>
-  </footer>
-
-  <!-- ===========================================
-       SCRIPTS
-       =========================================== -->
+  <!-- Scripts -->
   <script>
-    // ===========================================
-    // SPARK PARTICLE SYSTEM
-    // Canvas-based floating spark particles
-    // ===========================================
+    // Nav scroll effect
     (function() {
-      const canvas = document.getElementById('spark-canvas');
-      const ctx = canvas.getContext('2d');
-      let particles = [];
-      let mouseX = 0, mouseY = 0;
-      let w, h;
-
-      function resize() {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-      }
-      resize();
-      window.addEventListener('resize', resize);
-
-      // Track mouse for subtle interaction
-      window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-      });
-
-      class Particle {
-        constructor() {
-          this.reset(true);
+      const nav = document.getElementById('nav');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 60) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
         }
-
-        reset(initial = false) {
-          this.x = Math.random() * w;
-          this.y = initial ? Math.random() * h : h + 10;
-          this.size = Math.random() * 2.5 + 0.5;
-          this.speedY = -(Math.random() * 0.6 + 0.2);
-          this.speedX = (Math.random() - 0.5) * 0.3;
-          this.opacity = Math.random() * 0.6 + 0.2;
-          this.fadeSpeed = Math.random() * 0.003 + 0.001;
-          this.sparkle = Math.random() > 0.7; // Some particles sparkle
-          this.sparklePhase = Math.random() * Math.PI * 2;
-          this.sparkleSpeed = Math.random() * 0.05 + 0.02;
-          this.warm = Math.random() > 0.5; // Warm vs cool tone
-        }
-
-        update() {
-          this.y += this.speedY;
-          this.x += this.speedX;
-          this.sparklePhase += this.sparkleSpeed;
-
-          // Subtle mouse repulsion
-          const dx = this.x - mouseX;
-          const dy = this.y - mouseY;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            const force = (150 - dist) / 150 * 0.3;
-            this.speedX += (dx / dist) * force;
-            this.speedY += (dy / dist) * force;
-          }
-
-          // Dampen horizontal speed
-          this.speedX *= 0.99;
-
-          // Fade out near top
-          if (this.y < h * 0.15) {
-            this.opacity -= this.fadeSpeed;
-          }
-
-          if (this.y < -10 || this.opacity <= 0) {
-            this.reset();
-          }
-        }
-
-        draw() {
-          let alpha = this.opacity;
-          if (this.sparkle) {
-            alpha *= 0.6 + 0.4 * Math.sin(this.sparklePhase);
-          }
-
-          const r = this.warm ? 196 : 180;
-          const g = this.warm ? 168 : 160;
-          const b = this.warm ? 130 : 200;
-
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
-          ctx.fill();
-
-          // Glow for larger particles
-          if (this.size > 1.8) {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha * 0.08})`;
-            ctx.fill();
-          }
-        }
-      }
-
-      // Create particles
-      const count = Math.min(80, Math.floor(w * h / 15000));
-      for (let i = 0; i < count; i++) {
-        particles.push(new Particle());
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, w, h);
-        particles.forEach(p => {
-          p.update();
-          p.draw();
-        });
-        requestAnimationFrame(animate);
-      }
-      animate();
+      }, { passive: true });
     })();
 
-    // ===========================================
-    // INTERSECTION OBSERVER (Scroll Reveal)
-    // ===========================================
+    // Intersection Observer for reveals
     (function() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
           }
         });
       }, {
-        threshold: 0.08,
-        rootMargin: '0px 0px -60px 0px'
+        threshold: 0.06,
+        rootMargin: '0px 0px -50px 0px'
       });
 
-      document.querySelectorAll('.reveal, .reveal-blur, .reveal-scale').forEach(el => {
+      document.querySelectorAll('.reveal, .reblur').forEach(function(el) {
         observer.observe(el);
       });
     })();
 
-    // ===========================================
-    // NAV SCROLL EFFECT
-    // ===========================================
+    // Smooth scroll
     (function() {
-      const nav = document.getElementById('nav');
-      let lastScroll = 0;
-
-      window.addEventListener('scroll', () => {
-        const current = window.scrollY;
-        if (current > 80) {
-          nav.classList.add('scrolled');
-        } else {
-          nav.classList.remove('scrolled');
-        }
-        lastScroll = current;
-      }, { passive: true });
-    })();
-
-    // ===========================================
-    // SMOOTH SCROLL FOR ANCHOR LINKS
-    // ===========================================
-    (function() {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         anchor.addEventListener('click', function(e) {
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
