@@ -291,6 +291,10 @@
       margin-bottom: 28px;
     }
 
+    .hero-title-line {
+      white-space: nowrap;
+    }
+
     .hero-subtitle {
       font-size: clamp(16px, 1.4vw, 19px);
       font-weight: 400;
@@ -429,7 +433,7 @@
         gap: 40px;
       }
       .hero-content { max-width: 100%; }
-      .hero-title { font-size: clamp(36px, 10vw, 56px); }
+      .hero-title { font-size: clamp(32px, 9vw, 48px); }
       .hero-sphere-wrapper { width: 220px; }
       .hero-scroll { left: 50%; transform: translateX(-50%); }
     }
@@ -944,7 +948,8 @@
   <section class="hero" id="hero">
     <div class="hero-content">
       <h1 class="hero-title reblur delay-1">
-        构建能够持续存在<br>并不断演化的世界与生命
+        <span class="hero-title-line">构建能够持续存在</span><br>
+        <span class="hero-title-line">并不断演化的世界与生命</span>
       </h1>
       <p class="hero-subtitle reveal delay-2">
         GenSphere 专注于人工智能研究与产品创新，致力于让世界模型、多模态 AI 与长期记忆架构，成为下一代交互叙事与 RPG 的底层能力。
