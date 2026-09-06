@@ -253,10 +253,12 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      text-align: center;
+      align-items: flex-start;
+      text-align: left;
       padding: 140px 48px 80px;
       position: relative;
+      max-width: 1300px;
+      margin: 0 auto;
     }
 
     .hero-label {
@@ -312,15 +314,14 @@
     .hero-scroll {
       position: absolute;
       bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 48px;
       color: var(--text-muted);
       animation: bounce 2.4s ease-in-out infinite;
     }
 
     @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(10px); }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
     }
 
     /* ===========================================
@@ -701,10 +702,10 @@
   <!-- Hero (Full Screen) -->
   <section class="hero" id="hero">
     <h1 class="hero-title reblur delay-1">
-      构建能够持续存在<br>并不断演化的世界
+      构建能够持续存在<br>并不断演化的世界与生命
     </h1>
     <p class="hero-subtitle reveal delay-2">
-      GenSphere 专注于人工智能研究与产品创新的科技公司，致力于让世界模型、多模态 AI 与长期记忆架构，成为下一代交互叙事与 RPG 的底层能力。
+      GenSphere 专注于人工智能研究与产品创新，致力于让世界模型、多模态 AI 与长期记忆架构，成为下一代交互叙事与 RPG 的底层能力。
     </p>
     <a href="#about" class="hero-cta reveal delay-3">
       了解我们
