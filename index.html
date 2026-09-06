@@ -67,22 +67,24 @@
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
+      transition: opacity 0.3s ease;
     }
 
-    .nav-logo img {
-      height: 36px;
+    .nav-logo:hover { opacity: 0.85; }
+
+    .nav-logo img.icon {
+      height: 28px;
+      width: 28px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .nav-logo img.wordmark {
+      height: 22px;
       width: auto;
       object-fit: contain;
-    }
-
-    .nav-logo span {
-      font-family: 'Inter', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: -0.3px;
-      color: var(--text);
     }
 
     .nav-links {
@@ -536,15 +538,18 @@
     .footer-logo {
       display: flex;
       align-items: center;
-      gap: 12px;
-      color: var(--text-secondary);
-      font-family: 'Inter', 'Noto Sans SC', sans-serif;
-      font-size: 16px;
-      font-weight: 600;
+      gap: 10px;
     }
 
-    .footer-logo img {
-      height: 32px;
+    .footer-logo img.icon {
+      height: 26px;
+      width: 26px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .footer-logo img.wordmark {
+      height: 20px;
       width: auto;
       object-fit: contain;
     }
@@ -579,7 +584,8 @@
   <!-- Navigation -->
   <nav class="nav" id="nav">
     <a href="#" class="nav-logo">
-      <img src="assets/logo-main.jpeg" alt="维境拟生">
+      <img src="assets/icon-sphere.jpeg" alt="" class="icon">
+      <img src="assets/wordmark-gensphere.jpeg" alt="GenSphere" class="wordmark">
     </a>
     <div class="nav-links">
       <a href="#about" class="nav-link">关于</a>
@@ -711,7 +717,8 @@
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-logo">
-        <img src="assets/logo-main.jpeg" alt="维境拟生">
+        <img src="assets/icon-sphere.jpeg" alt="" class="icon">
+        <img src="assets/wordmark-gensphere.jpeg" alt="GenSphere" class="wordmark">
       </div>
       <div class="footer-copy">
         © 2024–2026 深圳维境拟生科技有限公司. ALL RIGHTS RESERVED.
