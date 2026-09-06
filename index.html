@@ -251,19 +251,20 @@
     .hero {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      flex-direction: row;
+      justify-content: space-between;
       align-items: center;
-      text-align: center;
+      text-align: left;
       padding: 140px 48px 80px;
       position: relative;
       max-width: 1300px;
       margin: 0 auto;
-      gap: 48px;
+      gap: 60px;
     }
 
     .hero-content {
-      max-width: 720px;
+      flex: 1;
+      max-width: 620px;
     }
 
     .hero-label {
@@ -318,7 +319,7 @@
     .hero-sphere-wrapper {
       position: relative;
       flex-shrink: 0;
-      width: clamp(240px, 28vw, 380px);
+      width: clamp(280px, 32vw, 420px);
       text-decoration: none;
       cursor: pointer;
     }
@@ -413,9 +414,13 @@
 
     @media (max-width: 900px) {
       .hero {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
         padding: 120px 24px 60px;
         gap: 40px;
       }
+      .hero-content { max-width: 100%; }
       .hero-title { font-size: clamp(36px, 10vw, 56px); }
       .hero-sphere-wrapper { width: 220px; }
       .hero-scroll { left: 50%; transform: translateX(-50%); }
@@ -659,12 +664,21 @@
       max-width: none;
     }
 
-    .cta-globe {
+    .cta-video-wrap {
       width: 100%;
-      max-width: 600px;
-      height: auto;
+      max-width: 520px;
+      margin: 0 auto 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      aspect-ratio: 1;
+      position: relative;
+    }
+
+    .cta-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
-      margin: 56px auto 0;
     }
 
     .cta-globe-full {
@@ -735,7 +749,7 @@
 
     .legend-content {
       max-width: 640px;
-      margin: 0 auto 48px;
+      margin: 0 auto;
       text-align: center;
     }
 
@@ -782,7 +796,7 @@
     .legend-image-wrap {
       position: relative;
       width: 100%;
-      margin: 0 auto;
+      margin: 0 auto 48px;
     }
 
     .legend-image {
@@ -815,7 +829,7 @@
 
     @media (max-width: 900px) {
       .cta-section { padding: 100px 24px 80px; }
-      .cta-globe { max-width: 400px; margin-top: 40px; }
+      .cta-video-wrap { max-width: 360px; margin-bottom: 32px; }
     }
 
     /* ===========================================
@@ -983,6 +997,11 @@
   <!-- Experience / CTA (Minimal globe) -->
   <section class="cta-section" id="experience">
     <div class="cta-inner">
+      <div class="cta-video-wrap reblur">
+        <video class="cta-video" muted loop playsinline webkit-playsinline poster="assets/globe-red.png" preload="none">
+          <source src="assets/sphere-video.mp4" type="video/mp4">
+        </video>
+      </div>
       <h2 class="cta-title-big reveal delay-1">
         一个持续演化的<br>
         <span>剧情世界</span>
@@ -994,29 +1013,28 @@
         体验剧情
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
-      <img src="assets/globe-red.png" alt="" class="cta-globe reblur delay-4">
     </div>
   </section>
 
   <!-- Legend / Story (Character illustration) -->
   <section class="legend-section" id="legend">
     <div class="legend-inner">
+      <div class="legend-image-wrap reblur">
+        <img src="assets/legend-bg.png" alt="" class="legend-image">
+        <div class="legend-image-fade"></div>
+      </div>
       <div class="legend-content">
-        <h2 class="legend-title reblur">
+        <h2 class="legend-title reblur delay-1">
           一个由你书写的<br>
           <span>传奇</span>
         </h2>
-        <p class="legend-desc reveal delay-1">
+        <p class="legend-desc reveal delay-2">
           穿越未知的历险、荒野与遗迹，结识会记住你的角色，建立关系，卷入冲突，发现秘密，你的冒险会成为这个世界真实发生过的历史。
         </p>
-        <a href="#" class="legend-btn reveal delay-2">
+        <a href="#" class="legend-btn reveal delay-3">
           体验剧情
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
-      </div>
-      <div class="legend-image-wrap reblur delay-3">
-        <img src="assets/legend-bg.png" alt="" class="legend-image">
-        <div class="legend-image-fade"></div>
       </div>
     </div>
   </section>
@@ -1120,6 +1138,49 @@
           }
         });
       });
+    })();
+
+    // CTA video: play on hover
+    (function() {
+      const video = document.querySelector('.cta-video');
+      if (!video) return;
+
+      const wrap = video.closest('.cta-video-wrap');
+      if (!wrap) return;
+
+      let loaded = false;
+
+      function loadAndPlay() {
+        if (!loaded) {
+          video.load();
+          loaded = true;
+        }
+        const p = video.play();
+        if (p && p.catch) {
+          p.catch(function() { /* autoplay blocked */ });
+        }
+      }
+
+      function pauseVideo() {
+        video.pause();
+      }
+
+      wrap.addEventListener('mouseenter', loadAndPlay);
+      wrap.addEventListener('mouseleave', pauseVideo);
+
+      // Also play when in viewport on mobile (touch)
+      if ('ontouchstart' in window) {
+        const observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              loadAndPlay();
+            } else {
+              pauseVideo();
+            }
+          });
+        }, { threshold: 0.3 });
+        observer.observe(wrap);
+      }
     })();
 
     // Video autoplay fallback for mobile
