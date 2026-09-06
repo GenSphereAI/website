@@ -251,14 +251,20 @@
     .hero {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
       text-align: left;
       padding: 140px 48px 80px;
       position: relative;
       max-width: 1300px;
       margin: 0 auto;
+      gap: 60px;
+    }
+
+    .hero-content {
+      flex: 1;
+      max-width: 620px;
     }
 
     .hero-label {
@@ -273,12 +279,11 @@
 
     .hero-title {
       font-family: 'Noto Serif SC', serif;
-      font-size: clamp(40px, 5.5vw, 72px);
+      font-size: clamp(40px, 5vw, 68px);
       font-weight: 700;
       line-height: 1.12;
       letter-spacing: -0.02em;
       color: var(--text);
-      max-width: 900px;
       margin-bottom: 28px;
     }
 
@@ -286,7 +291,6 @@
       font-size: clamp(16px, 1.4vw, 19px);
       font-weight: 400;
       color: var(--text-secondary);
-      max-width: 620px;
       line-height: 1.85;
       margin-bottom: 48px;
     }
@@ -311,6 +315,90 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
 
+    /* Hero sphere (right side) */
+    .hero-sphere-wrapper {
+      position: relative;
+      flex-shrink: 0;
+      width: clamp(280px, 35vw, 480px);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .hero-sphere {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+    }
+
+    .hero-sphere img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .hero-sphere-shine {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+        105deg,
+        transparent 30%,
+        rgba(255,255,255,0.25) 50%,
+        transparent 70%
+      );
+      transform: skewX(-15deg);
+      animation: sphereShine 4s ease-in-out infinite;
+    }
+
+    @keyframes sphereShine {
+      0%, 100% { left: -100%; }
+      50% { left: 120%; }
+    }
+
+    .hero-sphere-wrapper:hover .hero-sphere {
+      transform: scale(1.06);
+      box-shadow: 0 20px 60px rgba(45,91,156,0.2);
+    }
+
+    .hero-sphere-tooltip {
+      position: absolute;
+      top: -48px;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: var(--text);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .hero-sphere-tooltip::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid var(--text);
+    }
+
+    .hero-sphere-wrapper:hover .hero-sphere-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
     .hero-scroll {
       position: absolute;
       bottom: 36px;
@@ -322,6 +410,20 @@
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(10px); }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 120px 24px 60px;
+        gap: 48px;
+      }
+      .hero-content { max-width: 100%; }
+      .hero-title { font-size: clamp(36px, 10vw, 56px); }
+      .hero-sphere-wrapper { width: 240px; }
+      .hero-scroll { left: 50%; transform: translateX(-50%); }
     }
 
     /* ===========================================
@@ -790,15 +892,24 @@
 
   <!-- Hero (Full Screen) -->
   <section class="hero" id="hero">
-    <h1 class="hero-title reblur delay-1">
-      构建能够持续存在<br>并不断演化的世界与生命
-    </h1>
-    <p class="hero-subtitle reveal delay-2">
-      GenSphere 专注于人工智能研究与产品创新，致力于让世界模型、多模态 AI 与长期记忆架构，成为下一代交互叙事与 RPG 的底层能力。
-    </p>
-    <a href="#about" class="hero-cta reveal delay-3">
-      了解我们
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m5 12 7 7 7-7"/></svg>
+    <div class="hero-content">
+      <h1 class="hero-title reblur delay-1">
+        构建能够持续存在<br>并不断演化的世界与生命
+      </h1>
+      <p class="hero-subtitle reveal delay-2">
+        GenSphere 专注于人工智能研究与产品创新，致力于让世界模型、多模态 AI 与长期记忆架构，成为下一代交互叙事与 RPG 的底层能力。
+      </p>
+      <a href="#about" class="hero-cta reveal delay-3">
+        了解我们
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m5 12 7 7-7 7"/></svg>
+      </a>
+    </div>
+    <a href="#experience" class="hero-sphere-wrapper reblur delay-2" title="点击探索世界">
+      <div class="hero-sphere">
+        <img src="assets/hero-sphere.png" alt="探索世界">
+        <div class="hero-sphere-shine"></div>
+      </div>
+      <div class="hero-sphere-tooltip">点击探索世界</div>
     </a>
     <div class="hero-scroll reveal delay-4">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
