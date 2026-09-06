@@ -815,7 +815,7 @@
       margin: 0 auto 48px;
     }
 
-    .legend-video {
+    .legend-image {
       width: 100%;
       max-width: 100%;
       height: auto;
@@ -1037,9 +1037,7 @@
   <section class="legend-section" id="legend">
     <div class="legend-inner">
       <div class="legend-image-wrap reblur">
-        <video class="legend-video" muted loop playsinline webkit-playsinline poster="assets/legend-bg.png" preload="none">
-          <source src="assets/legend-video.mp4" type="video/mp4">
-        </video>
+        <img src="assets/legend-bg.png" alt="" class="legend-image">
         <div class="legend-image-fade"></div>
       </div>
       <div class="legend-content">
@@ -1185,63 +1183,6 @@
       if (!video) return;
 
       const wrap = video.closest('.cta-video-wrap');
-      if (!wrap) return;
-
-      let loaded = false;
-      let shouldPause = false;
-
-      function loadAndPlay() {
-        shouldPause = false;
-        if (!loaded) {
-          video.load();
-          loaded = true;
-        }
-        const p = video.play();
-        if (p && p.catch) {
-          p.catch(function() { /* autoplay blocked */ });
-        }
-      }
-
-      function schedulePause() {
-        shouldPause = true;
-      }
-
-      function checkPause() {
-        if (!shouldPause) return;
-        // Pause when near the end of current loop (within 0.15s of duration)
-        if (video.duration && video.currentTime >= video.duration - 0.15) {
-          video.pause();
-          video.currentTime = 0;
-          shouldPause = false;
-        }
-      }
-
-      video.addEventListener('timeupdate', checkPause);
-
-      wrap.addEventListener('mouseenter', loadAndPlay);
-      wrap.addEventListener('mouseleave', schedulePause);
-
-      // Also play when in viewport on mobile (touch)
-      if ('ontouchstart' in window) {
-        const observer = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              loadAndPlay();
-            } else {
-              schedulePause();
-            }
-          });
-        }, { threshold: 0.3 });
-        observer.observe(wrap);
-      }
-    })();
-
-    // Legend video: play on hover, finish current loop on leave
-    (function() {
-      const video = document.querySelector('.legend-video');
-      if (!video) return;
-
-      const wrap = video.closest('.legend-image-wrap');
       if (!wrap) return;
 
       let loaded = false;
