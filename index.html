@@ -240,10 +240,14 @@
       filter: blur(0);
     }
 
+    .fade-down {
+      transform: translateY(-30px);
+    }
+
     .delay-1 { transition-delay: 0.12s; }
     .delay-2 { transition-delay: 0.24s; }
-    .delay-3 { transition-delay: 0.36s; }
-    .delay-4 { transition-delay: 0.48s; }
+    .delay-3 { transition-delay: 0.4s; }
+    .delay-4 { transition-delay: 0.52s; }
 
     /* ===========================================
        HERO (Full Screen)
@@ -353,12 +357,12 @@
         transparent 70%
       );
       transform: skewX(-15deg);
-      animation: sphereShine 4s ease-in-out infinite;
+      animation: sphereShine 5s linear infinite;
     }
 
     @keyframes sphereShine {
-      0%, 100% { left: -100%; }
-      50% { left: 120%; }
+      0% { left: -100%; }
+      100% { left: 120%; }
     }
 
     .hero-sphere-wrapper:hover .hero-sphere {
@@ -734,7 +738,7 @@
        =========================================== */
     .legend-section {
       position: relative;
-      padding: 120px 48px 0;
+      padding: 120px 48px 100px;
       overflow: hidden;
       background: #fff;
     }
@@ -823,7 +827,7 @@
     }
 
     @media (max-width: 900px) {
-      .legend-section { padding: 80px 24px 0; }
+      .legend-section { padding: 80px 24px 60px; }
       .legend-content { margin-bottom: 32px; }
     }
 
@@ -934,7 +938,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m5 12 7 7-7 7"/></svg>
       </a>
     </div>
-    <a href="#experience" class="hero-sphere-wrapper reblur delay-2" title="点击探索世界">
+    <a href="#experience" class="hero-sphere-wrapper reblur fade-down delay-3" title="点击探索世界">
       <div class="hero-sphere">
         <img src="assets/hero-sphere.png" alt="探索世界">
         <div class="hero-sphere-shine"></div>
@@ -1140,7 +1144,7 @@
       });
     })();
 
-    // CTA video: play on hover
+    // CTA video: play on hover, finish current loop on leave
     (function() {
       const video = document.querySelector('.cta-video');
       if (!video) return;
@@ -1149,8 +1153,10 @@
       if (!wrap) return;
 
       let loaded = false;
+      let shouldPause = false;
 
       function loadAndPlay() {
+        shouldPause = false;
         if (!loaded) {
           video.load();
           loaded = true;
@@ -1161,12 +1167,24 @@
         }
       }
 
-      function pauseVideo() {
-        video.pause();
+      function schedulePause() {
+        shouldPause = true;
       }
 
+      function checkPause() {
+        if (!shouldPause) return;
+        // Pause when near the end of current loop (within 0.15s of duration)
+        if (video.duration && video.currentTime >= video.duration - 0.15) {
+          video.pause();
+          video.currentTime = 0;
+          shouldPause = false;
+        }
+      }
+
+      video.addEventListener('timeupdate', checkPause);
+
       wrap.addEventListener('mouseenter', loadAndPlay);
-      wrap.addEventListener('mouseleave', pauseVideo);
+      wrap.addEventListener('mouseleave', schedulePause);
 
       // Also play when in viewport on mobile (touch)
       if ('ontouchstart' in window) {
@@ -1175,7 +1193,7 @@
             if (entry.isIntersecting) {
               loadAndPlay();
             } else {
-              pauseVideo();
+              schedulePause();
             }
           });
         }, { threshold: 0.3 });
