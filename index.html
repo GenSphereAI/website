@@ -443,142 +443,74 @@
     }
 
     /* ===========================================
-       CTA / EXPERIENCE (World Labs style)
+       CTA / EXPERIENCE (Minimal globe style)
        =========================================== */
     .cta-section {
       position: relative;
-      padding: 120px 48px 0;
+      padding: 160px 48px 0;
       overflow: hidden;
-      background: #2a6eb8;
+      background: #fff;
     }
 
     .cta-inner {
       position: relative;
       z-index: 2;
-      max-width: 1300px;
+      max-width: 900px;
       margin: 0 auto;
-      border-radius: 20px;
-      overflow: hidden;
-      background: #2a6eb8;
+      text-align: center;
     }
 
-    .cta-bg-img {
+    .cta-globe {
       width: 100%;
+      max-width: 600px;
       height: auto;
       display: block;
-    }
-
-    .cta-content-wrap {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding: 48px;
-    }
-
-    .cta-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 40px;
-    }
-
-    .cta-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .cta-nav a {
-      color: rgba(255,255,255,0.9);
-      text-decoration: none;
-      font-size: 20px;
-      font-weight: 500;
-      font-family: 'Inter', 'Noto Sans SC', sans-serif;
-      transition: opacity 0.3s ease;
-    }
-
-    .cta-nav a:hover { opacity: 0.7; }
-
-    .cta-bottom-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 32px;
-      border-radius: 100px;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(8px);
-      color: #fff;
-      font-size: 16px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      align-self: flex-start;
-    }
-
-    .cta-bottom-btn:hover {
-      background: rgba(0,0,0,0.6);
-      transform: translateY(-2px);
-    }
-
-    .cta-right {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      gap: 24px;
+      margin: 0 auto 48px;
     }
 
     .cta-title-big {
       font-family: 'Noto Serif SC', serif;
-      font-size: clamp(40px, 5vw, 64px);
+      font-size: clamp(32px, 4.5vw, 52px);
       font-weight: 700;
-      line-height: 1.15;
-      color: #fff;
+      line-height: 1.2;
+      color: var(--text);
       letter-spacing: -0.02em;
+      margin-bottom: 20px;
     }
 
     .cta-title-big span { color: var(--accent); }
 
     .cta-subtitle-big {
       font-size: 16px;
-      color: rgba(255,255,255,0.8);
-      line-height: 1.8;
-      max-width: 480px;
+      color: var(--text-secondary);
+      line-height: 1.9;
+      max-width: 560px;
+      margin: 0 auto 40px;
     }
 
     .cta-btn-big {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 16px 44px;
+      padding: 14px 40px;
       border-radius: 100px;
-      background: #fff;
-      color: var(--text);
-      font-size: 16px;
+      background: var(--text);
+      color: #fff;
+      font-size: 15px;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.35s var(--ease-out);
     }
 
     .cta-btn-big:hover {
-      background: var(--accent);
-      color: #fff;
+      background: #333;
       transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
 
     @media (max-width: 900px) {
-      .cta-section { padding: 80px 24px 0; }
-      .cta-content-wrap {
-        grid-template-columns: 1fr;
-        padding: 32px 24px;
-      }
-      .cta-left { gap: 32px; }
-      .cta-nav { gap: 14px; }
-      .cta-nav a { font-size: 16px; }
-      .cta-right { text-align: center; margin-top: 24px; }
+      .cta-section { padding: 100px 24px 0; }
+      .cta-globe { max-width: 400px; margin-bottom: 32px; }
     }
 
     /* ===========================================
@@ -761,39 +693,21 @@
     </a>
   </section>
 
-  <!-- Experience / CTA (World Labs style) -->
+  <!-- Experience / CTA (Minimal globe) -->
   <section class="cta-section" id="experience">
     <div class="cta-inner">
-      <img src="assets/cta-bg.png" alt="" class="cta-bg-img">
-      <div class="cta-content-wrap">
-        <div class="cta-left">
-          <nav class="cta-nav">
-            <a href="#about">关于</a>
-            <a href="#aris">研究与洞察</a>
-            <a href="#aris">阿里斯实验室</a>
-            <a href="#">API</a>
-            <a href="#">Spark</a>
-            <a href="#join">加入我们</a>
-          </nav>
-          <a href="#" class="cta-bottom-btn">
-            进入世界
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
-        <div class="cta-right">
-          <h2 class="cta-title-big">
-            一个持续演化的<br>
-            <span>剧情世界</span>
-          </h2>
-          <p class="cta-subtitle-big">
-            进入 GenSphereAI 维境拟生的原创世界。创建新的身份，认识角色，建立关系，参与故事，并让你的选择真正成为这个世界历史的一部分。
-          </p>
-          <a href="#" class="cta-btn-big">
-            体验剧情
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
+      <img src="assets/globe-red.png" alt="" class="cta-globe reblur">
+      <h2 class="cta-title-big reveal delay-1">
+        一个持续演化的<br>
+        <span>剧情世界</span>
+      </h2>
+      <p class="cta-subtitle-big reveal delay-2">
+        进入 GenSphereAI 维境拟生的原创世界。创建新的身份，认识角色，建立关系，参与故事，并让你的选择真正成为这个世界历史的一部分。
+      </p>
+      <a href="#" class="cta-btn-big reveal delay-3">
+        体验剧情
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
     </div>
   </section>
 
