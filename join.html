@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>加入我们 - GenSphere</title>
+  <meta name="description" content="加入 GenSphere，一起创造可以被真正记住的世界。">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-muted: #8a8a8a;
+      --border: rgba(0,0,0,0.08);
+      --accent: #2d5b9c;
+      --accent-light: rgba(45,91,156,0.12);
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Noto Sans SC', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--accent-light);
+      color: var(--text);
+    }
+
+    /* ===========================================
+       NAVIGATION
+       =========================================== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-logo:hover { opacity: 0.85; }
+
+    .nav-logo img.icon {
+      height: 30px;
+      width: 30px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .nav-logo img.wordmark {
+      height: 26px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-menu-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 0;
+    }
+
+    .nav-menu-btn span,
+    .nav-menu-btn span::before,
+    .nav-menu-btn span::after {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--text);
+      position: relative;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .nav-menu-btn span::before,
+    .nav-menu-btn span::after {
+      content: '';
+      position: absolute;
+      left: 0;
+    }
+
+    .nav-menu-btn span::before { top: -6px; }
+    .nav-menu-btn span::after { top: 6px; }
+
+    .nav-menu-btn.active span { background: transparent; }
+    .nav-menu-btn.active span::before { top: 0; transform: rotate(45deg); }
+    .nav-menu-btn.active span::after { top: 0; transform: rotate(-45deg); }
+
+    /* Menu panel */
+    .nav-menu-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 100vh;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: -4px 0 24px rgba(0,0,0,0.08);
+      z-index: 1001;
+      padding: 80px 32px 32px;
+      transform: translateX(100%);
+      transition: transform 0.4s var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-menu-panel.open {
+      transform: translateX(0);
+    }
+
+    .nav-menu-panel a {
+      display: block;
+      padding: 16px 0;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.3s ease;
+    }
+
+    .nav-menu-panel a:hover {
+      color: var(--accent);
+    }
+
+    .nav-menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-menu-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    @media (max-width: 900px) {
+      .nav { padding: 16px 24px; }
+    }
+
+    /* ===========================================
+       REVEAL ANIMATIONS
+       =========================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reblur {
+      opacity: 0;
+      filter: blur(16px);
+      transform: translateY(12px);
+      transition: opacity 1.2s var(--ease-out), filter 1.2s var(--ease-out), transform 1.2s var(--ease-out);
+    }
+
+    .reblur.visible {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: 0.12s; }
+    .delay-2 { transition-delay: 0.24s; }
+    .delay-3 { transition-delay: 0.36s; }
+    .delay-4 { transition-delay: 0.48s; }
+
+    /* ===========================================
+       PAGE HERO
+       =========================================== */
+    .page-hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 160px 48px 80px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, #f8f9fb 0%, #fff 100%);
+    }
+
+    .page-hero-inner {
+      text-align: center;
+      max-width: 900px;
+    }
+
+    .page-hero-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .page-hero-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .page-hero-subtitle {
+      font-size: clamp(15px, 1.3vw, 18px);
+      color: var(--text-secondary);
+      line-height: 1.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ===========================================
+       JOIN US CONTENT
+       =========================================== */
+    .join-section {
+      padding: 120px 48px 160px;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .join-text {
+      font-size: clamp(15px, 1.3vw, 17px);
+      color: var(--text-secondary);
+      line-height: 2;
+      margin-bottom: 48px;
+    }
+
+    .join-highlight {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(18px, 1.8vw, 22px);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 64px;
+    }
+
+    .join-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 40px;
+      border-radius: 100px;
+      background: var(--text);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.35s var(--ease-out);
+    }
+
+    .join-cta:hover {
+      background: #333;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .open-roles {
+      margin-top: 120px;
+      text-align: left;
+    }
+
+    .open-roles h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .role-card {
+      padding: 28px 32px;
+      background: #fafbfc;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .role-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    .role-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .role-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .join-section { padding: 80px 24px 120px; }
+      .role-card { padding: 20px 24px; }
+    }
+
+    /* ===========================================
+       FOOTER
+       =========================================== */
+    .footer {
+      position: relative;
+      z-index: 2;
+      padding: 32px 48px;
+      background: #fff;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-logo img.icon {
+      height: 26px;
+      width: 26px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .footer-logo img.wordmark {
+      height: 22px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.3px;
+      text-align: right;
+    }
+
+    @media (max-width: 768px) {
+      .footer-inner { flex-direction: column; text-align: center; gap: 12px; }
+      .footer-copy { text-align: center; }
+    }
+
+    /* ===========================================
+       REDUCED MOTION
+       =========================================== */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reblur {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/icon-sphere.png" alt="" class="icon">
+      <img src="assets/wordmark-gensphere.png" alt="GenSphere" class="wordmark">
+    </a>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="菜单">
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Menu overlay -->
+  <div class="nav-menu-overlay" id="menuOverlay"></div>
+
+  <!-- Menu panel -->
+  <div class="nav-menu-panel" id="menuPanel">
+    <a href="index.html">首页</a>
+    <a href="index.html#about">关于</a>
+    <a href="aris.html">阿里斯实验室</a>
+    <a href="join.html">加入我们</a>
+    <a href="index.html#experience">体验剧情</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-hero-label reblur">JOIN US</div>
+      <h1 class="page-hero-title reblur delay-1">加入我们</h1>
+      <p class="page-hero-subtitle reveal delay-2">
+        一起创造可以被真正记住的世界
+      </p>
+    </div>
+  </section>
+
+  <!-- Join Content -->
+  <section class="join-section">
+    <p class="join-text reveal">
+      如果你对世界模型、多模态 AI、交互叙事或 RPG 充满热情，
+      如果你想参与构建下一代计算媒介，欢迎加入我们。
+    </p>
+    <p class="join-highlight reveal delay-1">
+      一起创造可以被真正记住的世界。
+    </p>
+    <a href="mailto:contact@gensphereai.xyz" class="join-cta reveal delay-2">
+      联系我们
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+
+    <div class="open-roles">
+      <h3 class="reveal">开放岗位</h3>
+      <div class="role-card reveal">
+        <div class="role-title">世界模型研究员</div>
+        <div class="role-meta">
+          <span>研究</span>
+          <span>深圳 / 远程</span>
+          <span>全职</span>
+        </div>
+      </div>
+      <div class="role-card reveal delay-1">
+        <div class="role-title">多模态生成工程师</div>
+        <div class="role-meta">
+          <span>工程</span>
+          <span>深圳 / 远程</span>
+          <span>全职</span>
+        </div>
+      </div>
+      <div class="role-card reveal delay-2">
+        <div class="role-title">前端开发工程师</div>
+        <div class="role-meta">
+          <span>工程</span>
+          <span>深圳 / 远程</span>
+          <span>全职</span>
+        </div>
+      </div>
+      <div class="role-card reveal delay-3">
+        <div class="role-title">游戏叙事设计师</div>
+        <div class="role-meta">
+          <span>设计</span>
+          <span>深圳</span>
+          <span>全职</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="assets/icon-sphere.png" alt="" class="icon">
+        <img src="assets/wordmark-gensphere.png" alt="GenSphere" class="wordmark">
+      </div>
+      <div class="footer-copy">
+        © 2024–2026 深圳维境拟生科技有限公司. ALL RIGHTS RESERVED.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Nav scroll effect
+    (function() {
+      const nav = document.getElementById('nav');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 60) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    })();
+
+    // Hamburger menu toggle
+    (function() {
+      const menuBtn = document.getElementById('menuBtn');
+      const menuPanel = document.getElementById('menuPanel');
+      const menuOverlay = document.getElementById('menuOverlay');
+
+      function openMenu() {
+        menuBtn.classList.add('active');
+        menuPanel.classList.add('open');
+        menuOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        menuBtn.classList.remove('active');
+        menuPanel.classList.remove('open');
+        menuOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      menuBtn.addEventListener('click', function() {
+        if (menuPanel.classList.contains('open')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      menuOverlay.addEventListener('click', closeMenu);
+
+      // Close menu when clicking a link
+      menuPanel.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && menuPanel.classList.contains('open')) {
+          closeMenu();
+        }
+      });
+    })();
+
+    // Intersection Observer for reveals
+    (function() {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.06,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      document.querySelectorAll('.reveal, .reblur').forEach(function(el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>
