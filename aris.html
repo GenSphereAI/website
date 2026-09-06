@@ -427,34 +427,60 @@
       gap: 20px;
     }
 
-    .lang-switch {
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    /* DeepSeek style language toggle */
+    .lang-toggle {
+      display: inline-flex;
+      align-items: stretch;
+      background: rgba(0,0,0,0.06);
+      border-radius: 999px;
+      padding: 3px;
       font-size: 12px;
-      color: var(--text-muted);
       font-family: 'Inter', sans-serif;
-    }
-
-    .lang-switch span {
       cursor: pointer;
-      transition: color 0.3s ease;
-      padding: 2px 4px;
+      user-select: none;
+      transition: background 0.3s ease;
     }
 
-    .lang-switch span.active {
+    .lang-toggle:hover {
+      background: rgba(0,0,0,0.1);
+    }
+
+    .lang-toggle span {
+      padding: 4px 12px;
+      border-radius: 999px;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .lang-toggle span.active {
+      background: #fff;
       color: var(--text);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
       font-weight: 600;
     }
 
-    .lang-switch span:hover:not(.active) {
+    .lang-toggle span:not(.active):hover {
       color: var(--text-secondary);
     }
 
-    .lang-divider {
-      width: 1px;
-      height: 12px;
-      background: var(--border);
+    /* Hide Google Translate default widget */
+    .goog-te-banner-frame,
+    .goog-te-gadget {
+      display: none !important;
+    }
+
+    body {
+      top: 0 !important;
+    }
+
+    #google_translate_element {
+      position: absolute;
+      visibility: hidden;
+      width: 0;
+      height: 0;
+      overflow: hidden;
     }
 
     @media (max-width: 768px) {
@@ -579,11 +605,11 @@
         <div class="footer-copy">
           © 2024–2026 深圳维境拟生科技有限公司. ALL RIGHTS RESERVED.
         </div>
-        <div class="lang-switch">
-          <span class="active">中</span>
-          <span class="lang-divider"></span>
-          <span>En</span>
+        <div class="lang-toggle" id="langToggle" title="Switch language">
+          <span class="active" data-lang="zh-CN">中</span>
+          <span data-lang="en">En</span>
         </div>
+        <div id="google_translate_element"></div>
       </div>
     </div>
   </footer>
@@ -660,6 +686,74 @@
         observer.observe(el);
       });
     })();
+
+    // Language toggle - Google Translate
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'zh-CN',
+        includedLanguages: 'zh-CN,en',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+
+    (function() {
+      const toggle = document.getElementById('langToggle');
+      if (!toggle) return;
+
+      let currentLang = 'zh-CN';
+
+      const saved = localStorage.getItem('gensphere_lang');
+      if (saved) currentLang = saved;
+
+      function updateUI(lang) {
+        toggle.querySelectorAll('span').forEach(function(s) {
+          s.classList.toggle('active', s.dataset.lang === lang);
+        });
+      }
+
+      function doTranslate(lang) {
+        const combo = document.querySelector('.goog-te-combo');
+        if (combo) {
+          combo.value = lang;
+          combo.dispatchEvent(new Event('change'));
+        }
+      }
+
+      updateUI(currentLang);
+
+      toggle.addEventListener('click', function(e) {
+        const target = e.target.closest('span[data-lang]');
+        if (!target) return;
+        const lang = target.dataset.lang;
+        if (lang === currentLang) return;
+
+        currentLang = lang;
+        localStorage.setItem('gensphere_lang', lang);
+        updateUI(lang);
+        doTranslate(lang);
+      });
+
+      const check = setInterval(function() {
+        const combo = document.querySelector('.goog-te-combo');
+        if (combo) {
+          clearInterval(check);
+          if (currentLang !== 'zh-CN') {
+            doTranslate(currentLang);
+          }
+        }
+      }, 300);
+      setTimeout(function() { clearInterval(check); }, 15000);
+
+      const observer = new MutationObserver(function() {
+        const banner = document.querySelector('.goog-te-banner-frame');
+        if (banner) banner.style.display = 'none';
+        document.body.style.top = '0px';
+        const gadget = document.querySelector('.goog-te-gadget');
+        if (gadget) gadget.style.display = 'none';
+      });
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+    })();
   </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
