@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>维境拟生 GenSphere</title>
-  <meta name="description" content="深圳维境拟生科技有限公司（GenSphere-AI）是一家专注于人工智能研究与产品创新的科技公司。">
+  <title>GenSphere</title>
+  <meta name="description" content="GenSphere 是一家专注于人工智能研究与产品创新的科技公司，致力于让世界模型、多模态 AI 与长期记忆架构，成为下一代交互叙事与 RPG 的底层能力。">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,8 +16,8 @@
       --text-secondary: #4a4a4a;
       --text-muted: #8a8a8a;
       --border: rgba(0,0,0,0.08);
-      --accent: #c4a882;
-      --accent-light: rgba(196,168,130,0.12);
+      --accent: #2d5b9c;
+      --accent-light: rgba(45,91,156,0.12);
       --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -121,7 +121,100 @@
       transform: translateY(-1px);
     }
 
-    @media (max-width: 768px) {
+    /* Hamburger menu */
+    .nav-menu-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 0;
+    }
+
+    .nav-menu-btn span,
+    .nav-menu-btn span::before,
+    .nav-menu-btn span::after {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--text);
+      position: relative;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .nav-menu-btn span::before,
+    .nav-menu-btn span::after {
+      content: '';
+      position: absolute;
+      left: 0;
+    }
+
+    .nav-menu-btn span::before { top: -6px; }
+    .nav-menu-btn span::after { top: 6px; }
+
+    .nav-menu-btn.active span { background: transparent; }
+    .nav-menu-btn.active span::before { top: 0; transform: rotate(45deg); }
+    .nav-menu-btn.active span::after { top: 0; transform: rotate(-45deg); }
+
+    /* Menu panel */
+    .nav-menu-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 100vh;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: -4px 0 24px rgba(0,0,0,0.08);
+      z-index: 1001;
+      padding: 80px 32px 32px;
+      transform: translateX(100%);
+      transition: transform 0.4s var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-menu-panel.open {
+      transform: translateX(0);
+    }
+
+    .nav-menu-panel a {
+      display: block;
+      padding: 16px 0;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.3s ease;
+    }
+
+    .nav-menu-panel a:hover {
+      color: var(--accent);
+    }
+
+    .nav-menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-menu-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    @media (max-width: 900px) {
       .nav { padding: 16px 24px; }
       .nav-links { display: none; }
     }
@@ -242,12 +335,14 @@
       overflow: hidden;
     }
 
-    .about-hero-video {
+    .about-hero-bg {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      background-image: url('assets/about-bg.png');
+      background-size: cover;
+      background-position: center;
       z-index: 0;
     }
 
@@ -584,16 +679,24 @@
   <!-- Navigation -->
   <nav class="nav" id="nav">
     <a href="#" class="nav-logo">
-      <img src="assets/icon-sphere.jpeg" alt="" class="icon">
-      <img src="assets/wordmark-gensphere.jpeg" alt="GenSphere" class="wordmark">
+      <img src="assets/icon-sphere.png" alt="" class="icon">
+      <img src="assets/wordmark-gensphere.png" alt="GenSphere" class="wordmark">
     </a>
-    <div class="nav-links">
-      <a href="#about" class="nav-link">关于</a>
-      <a href="#aris" class="nav-link">阿里斯实验室</a>
-      <a href="#join" class="nav-link">加入我们吧</a>
-      <a href="#experience" class="nav-cta">体验剧情</a>
-    </div>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="菜单">
+      <span></span>
+    </button>
   </nav>
+
+  <!-- Menu overlay -->
+  <div class="nav-menu-overlay" id="menuOverlay"></div>
+
+  <!-- Menu panel -->
+  <div class="nav-menu-panel" id="menuPanel">
+    <a href="#about">关于</a>
+    <a href="#aris">阿里斯实验室</a>
+    <a href="#join">加入我们</a>
+    <a href="#experience">体验剧情</a>
+  </div>
 
   <!-- Hero (Full Screen) -->
   <section class="hero" id="hero">
@@ -601,7 +704,7 @@
       构建能够持续存在<br>并不断演化的世界
     </h1>
     <p class="hero-subtitle reveal delay-2">
-      维境拟生 专注于人工智能研究与产品创新的科技公司，致力于让世界模型、多模态 AI 与长期记忆架构，成为下一代交互叙事与 RPG 的底层能力。
+      GenSphere 专注于人工智能研究与产品创新的科技公司，致力于让世界模型、多模态 AI 与长期记忆架构，成为下一代交互叙事与 RPG 的底层能力。
     </p>
     <a href="#about" class="hero-cta reveal delay-3">
       了解我们
@@ -612,16 +715,14 @@
     </div>
   </section>
 
-  <!-- About Hero (Full Screen Video) -->
+  <!-- About Hero (Full Screen Image) -->
   <section class="about-hero" id="about">
-    <video class="about-hero-video" autoplay muted loop playsinline webkit-playsinline poster="assets/cta-bg.jpg">
-      <source src="assets/about-bg.mp4" type="video/mp4; codecs=avc1.42E01E">
-    </video>
+    <div class="about-hero-bg"></div>
     <div class="about-hero-overlay"></div>
     <div class="about-hero-inner">
       <div class="about-hero-title reblur">关于我们</div>
       <div class="about-hero-desc reveal delay-1">
-        GenSphereAI 维境拟生是一家专注于人工智能研究与产品创新的科技公司。专注研究世界模型、物理模型、视频模型与语言模型，并探索这些模型在统一多模态系统中的结合方式。
+        GenSphere 是一家专注于人工智能研究与产品创新的科技公司。专注研究世界模型、物理模型、视频模型与语言模型，并探索这些模型在统一多模态系统中的结合方式。
       </div>
     </div>
   </section>
@@ -649,7 +750,7 @@
 
   <section class="about-section">
     <p class="about-body reveal">
-      GenSphereAI 维境拟生正在构建一套完整的 AI-native RPG 技术体系，包括长期上下文、持久记忆、角色与关系状态、世界状态、事件系统以及多模态生成。
+      GenSphere 正在构建一套完整的 AI-native RPG 技术体系，包括长期上下文、持久记忆、角色与关系状态、世界状态、事件系统以及多模态生成。
     </p>
     <p class="about-body reveal">
       语言模型负责理解、推理、角色行为与叙事推进；图像、视频与世界模型负责呈现人物、空间和环境变化；记忆系统负责让过去真正成为未来的一部分。
@@ -658,7 +759,7 @@
       我们持续研究记忆压缩、分层记忆、动态上下文选择与模型路由，让虚拟世界能够持续数周、数月甚至更长时间，并保持角色、关系与世界的连续演化。
     </p>
     <p class="about-body reveal">
-      GenSphereAI 维境拟生的长期研究聚焦世界模型，让人工智能能够理解空间、时间、对象、行为、因果关系以及环境变化。
+      GenSphere 的长期研究聚焦世界模型，让人工智能能够理解空间、时间、对象、行为、因果关系以及环境变化。
     </p>
   </section>
 
@@ -668,7 +769,7 @@
       <h2 class="section-title">阿里斯实验室</h2>
     </div>
     <p class="aris-lead reveal">
-      阿里斯实验室（Aris Labs）是 GenSphereAI 维境拟生面向前沿人工智能方向的研究与实验平台。
+      阿里斯实验室（Aris Labs）是 GenSphere 面向前沿人工智能方向的研究与实验平台。
     </p>
     <p class="aris-body reveal">
       我们探索<span class="aris-highlight">世界模型、物理模型、视频生成、语言模型、多模态智能、长期记忆、角色智能、交互叙事以及生成式世界</span>等方向，并将其中具有产品价值的研究逐步转化为真实可用的系统。
@@ -684,7 +785,7 @@
       <h2 class="section-title">加入我们吧</h2>
     </div>
     <p class="join-text reveal">
-      加入 GenSphereAI 维境拟生，与研究人员、工程师、游戏开发者、产品开发者、设计师与商业人才一起，推进人工智能、世界模型与下一代交互娱乐的发展。
+      加入 GenSphere，与研究人员、工程师、游戏开发者、产品开发者、设计师与商业人才一起，推进人工智能、世界模型与下一代交互娱乐的发展。
     </p>
     <p class="join-highlight reveal">
       我们寻找真正愿意研究困难问题，并愿意把研究最终变成产品的人。
@@ -704,7 +805,7 @@
         <span>剧情世界</span>
       </h2>
       <p class="cta-subtitle-big reveal delay-2">
-        进入 GenSphereAI 维境拟生的原创世界。创建新的身份，认识角色，建立关系，参与故事，并让你的选择真正成为这个世界历史的一部分。
+        新创属于你的世界，创建你的冒险者身份，认识角色，建立关系，参与故事，你的选择真正成为这个世界历史的一部分。
       </p>
       <a href="#" class="cta-btn-big reveal delay-3">
         体验剧情
@@ -717,8 +818,8 @@
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-logo">
-        <img src="assets/icon-sphere.jpeg" alt="" class="icon">
-        <img src="assets/wordmark-gensphere.jpeg" alt="GenSphere" class="wordmark">
+        <img src="assets/icon-sphere.png" alt="" class="icon">
+        <img src="assets/wordmark-gensphere.png" alt="GenSphere" class="wordmark">
       </div>
       <div class="footer-copy">
         © 2024–2026 深圳维境拟生科技有限公司. ALL RIGHTS RESERVED.
@@ -738,6 +839,49 @@
           nav.classList.remove('scrolled');
         }
       }, { passive: true });
+    })();
+
+    // Hamburger menu toggle
+    (function() {
+      const menuBtn = document.getElementById('menuBtn');
+      const menuPanel = document.getElementById('menuPanel');
+      const menuOverlay = document.getElementById('menuOverlay');
+
+      function openMenu() {
+        menuBtn.classList.add('active');
+        menuPanel.classList.add('open');
+        menuOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        menuBtn.classList.remove('active');
+        menuPanel.classList.remove('open');
+        menuOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      menuBtn.addEventListener('click', function() {
+        if (menuPanel.classList.contains('open')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      menuOverlay.addEventListener('click', closeMenu);
+
+      // Close menu when clicking a link
+      menuPanel.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && menuPanel.classList.contains('open')) {
+          closeMenu();
+        }
+      });
     })();
 
     // Intersection Observer for reveals
