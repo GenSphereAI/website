@@ -257,6 +257,29 @@
       max-width: 560px;
     }
 
+    .company-section {
+      margin-top: 96px;
+      padding-top: 72px;
+      border-top: 1px solid var(--border);
+    }
+
+    .company-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .company-copy {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 2;
+      max-width: 680px;
+    }
+
     /* Horizontal scroll cards */
     .aris-cards-wrap {
       overflow-x: auto;
@@ -371,6 +394,10 @@
 
     @media (max-width: 900px) {
       .aris-page { padding: 120px 24px 80px; }
+      .company-section {
+        margin-top: 72px;
+        padding-top: 56px;
+      }
       .aris-cards-wrap { margin: 0 -24px; padding: 8px 24px 20px; }
       .aris-card { width: 240px; }
     }
@@ -590,6 +617,13 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="company-section">
+        <h2 class="company-title reblur">维境拟生</h2>
+        <p class="company-copy reveal delay-1">
+          深圳市维境拟生科技有限公司（GenSphere）专注于人工智能交互系统与世界模型应用。
+        </p>
       </div>
     </div>
   </section>
